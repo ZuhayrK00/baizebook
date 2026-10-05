@@ -1,0 +1,24 @@
+.build/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+*.p8
+*.mobileprovision
+*.ipa
+*.xcarchive/
+*.log
+
+# Signing material, local secrets and private testing artifacts
+.env
+.env.*
+*.p12
+*.pem
+*.key
+*.xcresult/
+Docs/Screenshots/**/TestFlight-Available.jpg
+snookermate_export.json
+
+# Historical simulator and account-dashboard captures stay local
+Docs/Screenshots/

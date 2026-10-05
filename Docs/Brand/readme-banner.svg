@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+  <title id="title">BaizeBook — Every frame. Your story.</title>
+  <desc id="desc">A forest green banner with cream typography, gold table markings and three snooker balls.</desc>
+  <defs>
+    <linearGradient id="baize" x2="1" y2="1"><stop stop-color="#0b2921"/><stop offset="1" stop-color="#18513d"/></linearGradient>
+    <radialGradient id="red" cx=".3" cy=".25" r=".8"><stop stop-color="#e87469"/><stop offset=".35" stop-color="#bd4039"/><stop offset="1" stop-color="#6d1d23"/></radialGradient>
+    <radialGradient id="black" cx=".3" cy=".25" r=".8"><stop stop-color="#5a6561"/><stop offset=".4" stop-color="#202926"/><stop offset="1" stop-color="#0a100e"/></radialGradient>
+    <radialGradient id="gold" cx=".3" cy=".25" r=".8"><stop stop-color="#f7e9b7"/><stop offset=".5" stop-color="#d5b66d"/><stop offset="1" stop-color="#a07d38"/></radialGradient>
+  </defs>
+  <rect width="1200" height="340" rx="24" fill="url(#baize)"/>
+  <path d="M820 24V316M1044 24V316" stroke="#d8bc7c" stroke-opacity=".13"/>
+  <circle cx="932" cy="170" r="129" fill="none" stroke="#d8bc7c" stroke-opacity=".15"/>
+  <circle cx="932" cy="170" r="97" fill="none" stroke="#d8bc7c" stroke-opacity=".1"/>
+  <circle cx="61" cy="58" r="6" fill="#d8bc7c"/>
+  <text x="80" y="64" fill="#d8bc7c" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="17" font-weight="600" letter-spacing="4">AT THE TABLE</text>
+  <text x="52" y="135" fill="#faf7ed" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="56" font-weight="700" letter-spacing="-2">BaizeBook</text>
+  <text x="52" y="203" fill="#faf7ed" font-family="Georgia,serif" font-size="44">Every frame. Your story.</text>
+  <text x="54" y="252" fill="#bdcfc3" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="20">Snooker scoring, with a little more soul.</text>
+  <text x="54" y="301" fill="#d8bc7c" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="13" letter-spacing="3">iPHONE  /  iPAD  /  APPLE WATCH</text>
+  <ellipse cx="932" cy="250" rx="117" ry="15" fill="#071b15" fill-opacity=".4"/>
+  <circle cx="887" cy="130" r="43" fill="url(#red)"/>
+  <ellipse cx="872" cy="111" rx="12" ry="6" fill="#fff" fill-opacity=".25" transform="rotate(-25 872 111)"/>
+  <circle cx="971" cy="161" r="49" fill="url(#black)"/>
+  <ellipse cx="953" cy="139" rx="13" ry="7" fill="#fff" fill-opacity=".2" transform="rotate(-25 953 139)"/>
+  <circle cx="908" cy="212" r="38" fill="url(#gold)"/>
+  <ellipse cx="895" cy="196" rx="10" ry="5" fill="#fff" fill-opacity=".35" transform="rotate(-25 895 196)"/>
+  <text x="1128" y="302" text-anchor="end" fill="#d8bc7c" fill-opacity=".45" font-family="Georgia,serif" font-size="40">147</text>
+</svg>

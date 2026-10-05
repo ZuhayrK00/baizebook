@@ -1,0 +1,721 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DB56BC8F72FF06B9998C882 /* BaizeBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5345401ABAE9D9B9A9C1A /* BaizeBookApp.swift */; };
+		14F0595A26DD33B66943F2A6 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A0B54091549CA81871AA /* Archive.swift */; };
+		2A79CAF54712E0BD58F6E840 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4471BE9CB21A3736C14A /* Players.swift */; };
+		404364C4D3A1F29D22F7803A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6E2BEC80A9AB3BEBD7C4E /* Settings.swift */; };
+		41E30B656C44F98AB72DCFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BC05FB8412875C174FF7864 /* Assets.xcassets */; };
+		49F50062ED745D43134905BD /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD73BEC7184A34E0B1049 /* Store.swift */; };
+		4F49CEB9FD8BD101EB7CE9FA /* Scoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116C9DE7CF2435593EEABB4 /* Scoring.swift */; };
+		5823818093BB422C8CC16A73 /* BaizeBookWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8AEC3328DE7A1A8E480B5FB3 /* BaizeBookWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5FF5539919CF00B376404161 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A0B54091549CA81871AA /* Archive.swift */; };
+		6DF20EB6BAE6B83E49D0F955 /* Snooker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8010D68D3484A2195B3B4C /* Snooker.swift */; };
+		75E0555D2CFD0CDD80627755 /* BaizeBookWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA52605252A1047E9577C31 /* BaizeBookWatchApp.swift */; };
+		7654478ACB4D67D24C23B6B9 /* ScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D71EEBBCC98A67A28FB09 /* ScoringTests.swift */; };
+		8F9D267A40AF944DF6446CC7 /* WatchAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9A5316D786E4B8C5ACF570 /* WatchAssets.xcassets */; };
+		9039A7A613755777D8DD9050 /* ImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015989EB0E7C53602472F52F /* ImportTests.swift */; };
+		908BAFC6B353036DB76AB3CD /* PastGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586F7805CB3A7677732D4C83 /* PastGames.swift */; };
+		9DD6B8FD8A2694E5CF0DDCDA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8320798E92195E43C0E7F /* History.swift */; };
+		A0462E02A329B3FDD2E89D5F /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84673B1B516D6FF4F7B35213 /* StorageTests.swift */; };
+		A69A29CC3B0F56EA84DC4005 /* Snooker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8010D68D3484A2195B3B4C /* Snooker.swift */; };
+		AA08356A599FF29B51B3096B /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6156095639D662D75407FE /* Connectivity.swift */; };
+		B2F20BD2893115F12A036A72 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B8CB293D3990B1C8C52318 /* PrivacyInfo.xcprivacy */; };
+		B6574D099C347339C790F50E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3930C9A3E777CF655BC5F5 /* Home.swift */; };
+		C4595C5EA69F0D4767C0F26E /* JourneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4CAB039BB325B7848387A /* JourneyTests.swift */; };
+		CD4511575B5207D9609963EA /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6156095639D662D75407FE /* Connectivity.swift */; };
+		D5E832A613E66F668921E98E /* AdaptiveStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A76BFA27A13E1367B9F756 /* AdaptiveStack.swift */; };
+		EF8AA48F46C0B5816A4F81B3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B8CB293D3990B1C8C52318 /* PrivacyInfo.xcprivacy */; };
+		F33787B7B60DF6DF99D73F76 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1754414E625172BE96558188 /* Design.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E5125904AD01D7BB3CD573E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3E848083CD4FDA3540374E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31C1D4149DEEFB8D059A37F6;
+			remoteInfo = BaizeBook;
+		};
+		C50836B463D4C3643ED4CA29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3E848083CD4FDA3540374E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31C1D4149DEEFB8D059A37F6;
+			remoteInfo = BaizeBook;
+		};
+		E865C1A0B389548F860AB084 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3E848083CD4FDA3540374E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5285415736B7D29270888C75;
+			remoteInfo = BaizeBookWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EE68011A24968355B5D72B68 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				5823818093BB422C8CC16A73 /* BaizeBookWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		015989EB0E7C53602472F52F /* ImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportTests.swift; sourceTree = "<group>"; };
+		0A6CD241C529E7FC271B349B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0FD0FB68FF2C7756CCDD320A /* BaizeBookTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BaizeBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B8CB293D3990B1C8C52318 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		172F4471BE9CB21A3736C14A /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		1754414E625172BE96558188 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		27F6E2BEC80A9AB3BEBD7C4E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3F1D71EEBBCC98A67A28FB09 /* ScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringTests.swift; sourceTree = "<group>"; };
+		3F8010D68D3484A2195B3B4C /* Snooker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snooker.swift; sourceTree = "<group>"; };
+		42B312D426A6B81AE4BF0193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4AFFD73BEC7184A34E0B1049 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		4E3930C9A3E777CF655BC5F5 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		586F7805CB3A7677732D4C83 /* PastGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGames.swift; sourceTree = "<group>"; };
+		5DE8320798E92195E43C0E7F /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		71A76BFA27A13E1367B9F756 /* AdaptiveStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStack.swift; sourceTree = "<group>"; };
+		84673B1B516D6FF4F7B35213 /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
+		8AEC3328DE7A1A8E480B5FB3 /* BaizeBookWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaizeBookWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9116C9DE7CF2435593EEABB4 /* Scoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scoring.swift; sourceTree = "<group>"; };
+		9BC05FB8412875C174FF7864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9EA4CAB039BB325B7848387A /* JourneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyTests.swift; sourceTree = "<group>"; };
+		C18FE844190461BBD82A46E6 /* BaizeBookUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BaizeBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA52605252A1047E9577C31 /* BaizeBookWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaizeBookWatchApp.swift; sourceTree = "<group>"; };
+		D5B4685DE961A4EA7A07E7CF /* BaizeBook.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BaizeBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E515A0B54091549CA81871AA /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
+		E5C5345401ABAE9D9B9A9C1A /* BaizeBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaizeBookApp.swift; sourceTree = "<group>"; };
+		EC9A5316D786E4B8C5ACF570 /* WatchAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = WatchAssets.xcassets; sourceTree = "<group>"; };
+		EE6156095639D662D75407FE /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		03625B7EE26F64FDD45FCF80 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4CAB039BB325B7848387A /* JourneyTests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		14D22B85E41CCEA2B5B981C4 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				CDA52605252A1047E9577C31 /* BaizeBookWatchApp.swift */,
+				42B312D426A6B81AE4BF0193 /* Info.plist */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		15EC0E37ED2A157051B30F1F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9BC05FB8412875C174FF7864 /* Assets.xcassets */,
+				13B8CB293D3990B1C8C52318 /* PrivacyInfo.xcprivacy */,
+				EC9A5316D786E4B8C5ACF570 /* WatchAssets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3A18BABE9C334580DBF6DD36 = {
+			isa = PBXGroup;
+			children = (
+				4E139716BA279A037EED1183 /* App */,
+				15EC0E37ED2A157051B30F1F /* Resources */,
+				672F82636CBB9D161C2A28E8 /* Shared */,
+				A9134A500BC66F53B9004778 /* Tests */,
+				03625B7EE26F64FDD45FCF80 /* UITests */,
+				14D22B85E41CCEA2B5B981C4 /* Watch */,
+				5010EE4665ED01982EE4C5A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4E139716BA279A037EED1183 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				71A76BFA27A13E1367B9F756 /* AdaptiveStack.swift */,
+				E5C5345401ABAE9D9B9A9C1A /* BaizeBookApp.swift */,
+				1754414E625172BE96558188 /* Design.swift */,
+				5DE8320798E92195E43C0E7F /* History.swift */,
+				4E3930C9A3E777CF655BC5F5 /* Home.swift */,
+				0A6CD241C529E7FC271B349B /* Info.plist */,
+				586F7805CB3A7677732D4C83 /* PastGames.swift */,
+				172F4471BE9CB21A3736C14A /* Players.swift */,
+				9116C9DE7CF2435593EEABB4 /* Scoring.swift */,
+				27F6E2BEC80A9AB3BEBD7C4E /* Settings.swift */,
+				4AFFD73BEC7184A34E0B1049 /* Store.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5010EE4665ED01982EE4C5A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5B4685DE961A4EA7A07E7CF /* BaizeBook.app */,
+				0FD0FB68FF2C7756CCDD320A /* BaizeBookTests.xctest */,
+				C18FE844190461BBD82A46E6 /* BaizeBookUITests.xctest */,
+				8AEC3328DE7A1A8E480B5FB3 /* BaizeBookWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		672F82636CBB9D161C2A28E8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E515A0B54091549CA81871AA /* Archive.swift */,
+				EE6156095639D662D75407FE /* Connectivity.swift */,
+				3F8010D68D3484A2195B3B4C /* Snooker.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A9134A500BC66F53B9004778 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				015989EB0E7C53602472F52F /* ImportTests.swift */,
+				3F1D71EEBBCC98A67A28FB09 /* ScoringTests.swift */,
+				84673B1B516D6FF4F7B35213 /* StorageTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31C1D4149DEEFB8D059A37F6 /* BaizeBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CC1745593659E3130AEA82E /* Build configuration list for PBXNativeTarget "BaizeBook" */;
+			buildPhases = (
+				2BB91ED6945D53895CD9F09B /* Sources */,
+				656962F9878EBA405C596D86 /* Resources */,
+				EE68011A24968355B5D72B68 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05F631DC7561EF39ABFD1E7F /* PBXTargetDependency */,
+			);
+			name = BaizeBook;
+			packageProductDependencies = (
+			);
+			productName = BaizeBook;
+			productReference = D5B4685DE961A4EA7A07E7CF /* BaizeBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5285415736B7D29270888C75 /* BaizeBookWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52B28102FD6CA23D1D5A5578 /* Build configuration list for PBXNativeTarget "BaizeBookWatch" */;
+			buildPhases = (
+				34D286F3D5158CC4759EB02D /* Sources */,
+				38B5A6C14D6874275C92F8AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BaizeBookWatch;
+			packageProductDependencies = (
+			);
+			productName = BaizeBookWatch;
+			productReference = 8AEC3328DE7A1A8E480B5FB3 /* BaizeBookWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7AECE5FC7EF155DDCB7CE0C5 /* BaizeBookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81E693E95BC9B6C59435FD90 /* Build configuration list for PBXNativeTarget "BaizeBookUITests" */;
+			buildPhases = (
+				3F7B488E1F424D88D8AB14EF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F7838CB88DF69CE55D4C4A0 /* PBXTargetDependency */,
+			);
+			name = BaizeBookUITests;
+			packageProductDependencies = (
+			);
+			productName = BaizeBookUITests;
+			productReference = C18FE844190461BBD82A46E6 /* BaizeBookUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A53C488092632480D4BF4BD9 /* BaizeBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF457C781ED244B7B7EAD0BF /* Build configuration list for PBXNativeTarget "BaizeBookTests" */;
+			buildPhases = (
+				D05C8B81F0CAB0319F65162F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB71A84BBFE8CD96AFF6F85 /* PBXTargetDependency */,
+			);
+			name = BaizeBookTests;
+			packageProductDependencies = (
+			);
+			productName = BaizeBookTests;
+			productReference = 0FD0FB68FF2C7756CCDD320A /* BaizeBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3E848083CD4FDA3540374E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					31C1D4149DEEFB8D059A37F6 = {
+						DevelopmentTeam = 7NW33277C8;
+						ProvisioningStyle = Automatic;
+					};
+					5285415736B7D29270888C75 = {
+						DevelopmentTeam = 7NW33277C8;
+						ProvisioningStyle = Automatic;
+					};
+					7AECE5FC7EF155DDCB7CE0C5 = {
+						DevelopmentTeam = 7NW33277C8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 31C1D4149DEEFB8D059A37F6;
+					};
+					A53C488092632480D4BF4BD9 = {
+						DevelopmentTeam = 7NW33277C8;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 82A73DFE5011E75A7576D200 /* Build configuration list for PBXProject "BaizeBook" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3A18BABE9C334580DBF6DD36;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5010EE4665ED01982EE4C5A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				31C1D4149DEEFB8D059A37F6 /* BaizeBook */,
+				5285415736B7D29270888C75 /* BaizeBookWatch */,
+				A53C488092632480D4BF4BD9 /* BaizeBookTests */,
+				7AECE5FC7EF155DDCB7CE0C5 /* BaizeBookUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38B5A6C14D6874275C92F8AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF8AA48F46C0B5816A4F81B3 /* PrivacyInfo.xcprivacy in Resources */,
+				8F9D267A40AF944DF6446CC7 /* WatchAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		656962F9878EBA405C596D86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41E30B656C44F98AB72DCFC1 /* Assets.xcassets in Resources */,
+				B2F20BD2893115F12A036A72 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BB91ED6945D53895CD9F09B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5E832A613E66F668921E98E /* AdaptiveStack.swift in Sources */,
+				5FF5539919CF00B376404161 /* Archive.swift in Sources */,
+				0DB56BC8F72FF06B9998C882 /* BaizeBookApp.swift in Sources */,
+				CD4511575B5207D9609963EA /* Connectivity.swift in Sources */,
+				F33787B7B60DF6DF99D73F76 /* Design.swift in Sources */,
+				9DD6B8FD8A2694E5CF0DDCDA /* History.swift in Sources */,
+				B6574D099C347339C790F50E /* Home.swift in Sources */,
+				908BAFC6B353036DB76AB3CD /* PastGames.swift in Sources */,
+				2A79CAF54712E0BD58F6E840 /* Players.swift in Sources */,
+				4F49CEB9FD8BD101EB7CE9FA /* Scoring.swift in Sources */,
+				404364C4D3A1F29D22F7803A /* Settings.swift in Sources */,
+				6DF20EB6BAE6B83E49D0F955 /* Snooker.swift in Sources */,
+				49F50062ED745D43134905BD /* Store.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34D286F3D5158CC4759EB02D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14F0595A26DD33B66943F2A6 /* Archive.swift in Sources */,
+				75E0555D2CFD0CDD80627755 /* BaizeBookWatchApp.swift in Sources */,
+				AA08356A599FF29B51B3096B /* Connectivity.swift in Sources */,
+				A69A29CC3B0F56EA84DC4005 /* Snooker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F7B488E1F424D88D8AB14EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4595C5EA69F0D4767C0F26E /* JourneyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D05C8B81F0CAB0319F65162F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9039A7A613755777D8DD9050 /* ImportTests.swift in Sources */,
+				7654478ACB4D67D24C23B6B9 /* ScoringTests.swift in Sources */,
+				A0462E02A329B3FDD2E89D5F /* StorageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05F631DC7561EF39ABFD1E7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5285415736B7D29270888C75 /* BaizeBookWatch */;
+			targetProxy = E865C1A0B389548F860AB084 /* PBXContainerItemProxy */;
+		};
+		7F7838CB88DF69CE55D4C4A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31C1D4149DEEFB8D059A37F6 /* BaizeBook */;
+			targetProxy = C50836B463D4C3643ED4CA29 /* PBXContainerItemProxy */;
+		};
+		CDB71A84BBFE8CD96AFF6F85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31C1D4149DEEFB8D059A37F6 /* BaizeBook */;
+			targetProxy = 3E5125904AD01D7BB3CD573E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E5D035A71BC9D629C8FF368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.BaizeBookUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BaizeBook;
+			};
+			name = Release;
+		};
+		42A4F7F36E29A35766C6DD28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.BaizeBookTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaizeBook.app/BaizeBook";
+			};
+			name = Debug;
+		};
+		4F2775E40F55657793CABB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7NW33277C8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		5DF95020EA24F42259C721F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.baizebook;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5EE66F5D06A482FD9A59A2C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.baizebook.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		864980479F53602F29EDC721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.baizebook.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		8F2DCBA10CC3B0C5D5FA1F79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.baizebook;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2BD54F62F0A68272BAFBAB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7NW33277C8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		C37BF226EEF8CD278F08D57D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.BaizeBookTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaizeBook.app/BaizeBook";
+			};
+			name = Release;
+		};
+		C80C28226D8FAAD54EA2A1DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuhayrk.BaizeBookUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BaizeBook;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52B28102FD6CA23D1D5A5578 /* Build configuration list for PBXNativeTarget "BaizeBookWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EE66F5D06A482FD9A59A2C3 /* Debug */,
+				864980479F53602F29EDC721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		81E693E95BC9B6C59435FD90 /* Build configuration list for PBXNativeTarget "BaizeBookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C80C28226D8FAAD54EA2A1DB /* Debug */,
+				1E5D035A71BC9D629C8FF368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		82A73DFE5011E75A7576D200 /* Build configuration list for PBXProject "BaizeBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F2775E40F55657793CABB54 /* Debug */,
+				C2BD54F62F0A68272BAFBAB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9CC1745593659E3130AEA82E /* Build configuration list for PBXNativeTarget "BaizeBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F2DCBA10CC3B0C5D5FA1F79 /* Debug */,
+				5DF95020EA24F42259C721F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DF457C781ED244B7B7EAD0BF /* Build configuration list for PBXNativeTarget "BaizeBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A4F7F36E29A35766C6DD28 /* Debug */,
+				C37BF226EEF8CD278F08D57D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3E848083CD4FDA3540374E1 /* Project object */;
+}
