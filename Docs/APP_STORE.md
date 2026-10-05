@@ -68,7 +68,7 @@ No HealthKit, location, camera, microphone, purchases, advertisements or analyti
 
 ## Submission preparation — 5 October 2026
 
-Version 1.0 (5), the newest eligible upload, is selected for App Store review. App ID: 6819089436. Current description, promotional text, keywords, copyright, support/marketing URLs, review notes and private review contact are saved in App Store Connect. Sign-in required is off. Automatic release after approval is selected.
+Version 1.0 (6), the newest eligible upload, is selected for App Store review. App ID: 6819089436. Current description, promotional text, keywords, copyright, support/marketing URLs, review notes and private review contact are saved in App Store Connect. Sign-in required is off. Automatic release after approval is selected.
 
 Sports category, original-content declaration and age questionnaire are complete (4+ with regional equivalents). Price is free in all 175 territories; public distribution is selected. Mac and Vision Pro distribution are disabled for this initial iPhone/iPad/paired Watch release. Existing Free Apps agreement and DSA compliance are Active.
 
@@ -83,3 +83,9 @@ Submitted successfully on 5 October 2026 at 10:58 AM Europe/London. App Store Co
 All current and future marketing captures must use fictional players Alex and Jamie. Never use the developer’s name or personal player names in demonstration fixtures or screenshots. The DEBUG demo fixture and screenshot UI tests use these fictional names; real local player data is unaffected.
 
 Screenshot-only update resubmitted on 5 October 2026 at 11:11 AM Europe/London. All nine listing assets now use fictional players Alex and Jamie: four iPhone, four iPad and one Watch. Phone and iPad screenshot journeys passed; all captures were visually checked. The previous submission was withdrawn only to unlock screenshot editing. Same Release version/build 1.0 (5), automatic release after approval. Verified status: Waiting for Review. New submission ID: 306762b7-fdf7-4b1a-ad3f-796c3d1aba51. Review page: https://appstoreconnect.apple.com/apps/6819089436/distribution/reviewsubmissions/details/306762b7-fdf7-4b1a-ad3f-796c3d1aba51. Evidence: build/AppStore-Names-iPhone.jpg, build/AppStore-Names-Watch.jpg and build/AppStore-Names-Resubmitted.jpg.
+
+## Repository rename and build 6
+
+The repository was renamed to `baizebook`. Help, support, marketing and privacy links now use `https://zuhayrk00.github.io/baizebook/` and its `privacy.html` page. Both pages returned HTTP 200. Build 6 passed signed-package validation and Apple processing, and is available as Testing to the existing internal group.
+
+The build-5 submission was withdrawn to replace its embedded Help URL. Version **1.0 (6)** was resubmitted on **5 October 2026 at 12:15 PM Europe/London**. Verified status: **Waiting for Review**. Automatic release after approval remains selected. Submission ID: `c964283e-c732-4821-9841-0e983fbbea88`. Review page: https://appstoreconnect.apple.com/apps/6819089436/distribution/reviewsubmissions/details/c964283e-c732-4821-9841-0e983fbbea88. Receipt: `build/AppStore-Build6-Submitted.jpg`. The current fictional-player screenshots are retained because the only app change is its Help URL.

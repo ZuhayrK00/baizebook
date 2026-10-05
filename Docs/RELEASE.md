@@ -2,7 +2,15 @@
 
 ## Current App Store status
 
-Version **1.0 (5)** is **Waiting for Review**, resubmitted on 5 October 2026 at 11:11 AM Europe/London after replacing all listing screenshots with fictional players Alex and Jamie. Automatic release after approval is selected. App Store availability is pending Apple’s approval. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Full submission details are in `Docs/APP_STORE.md`.
+Version **1.0 (6)** is **Waiting for Review**, resubmitted on 5 October 2026 at 12:15 PM Europe/London with the renamed repository’s support links. The listing screenshots use fictional players Alex and Jamie. Automatic release after approval is selected. App Store availability is pending Apple’s approval. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Full submission details are in `Docs/APP_STORE.md`.
+
+## Build 6 — support-link migration
+
+Version **1.0 (6)** updates Settings → Help and support for the renamed `baizebook` repository. Phone and Watch archives passed signed-package checks with matching versions, assets and privacy manifests. The archived Release binary contains the new help URL and excludes the old URL. Apple accepted the upload on 5 October 2026 at 12:06 PM Europe/London and completed processing. The internal group shows **1 Tester / 5 Builds**, with **1.0 (6) Testing** and a 90-day expiry. Build-specific testing notes were saved. The last observed installation remains build 5; installation or physical testing of build 6 has not been performed by the agent. Build ID: `b6ec5c57-3b92-47ec-b163-b9b9e5deeb9d`.
+
+Support and privacy pages at `https://zuhayrk00.github.io/baizebook/` and `https://zuhayrk00.github.io/baizebook/privacy.html` both returned HTTP 200. App Store and TestFlight website URLs are saved at these new addresses. The repository remains public to view. Only the owner account has write access; there are no collaborators, pending invitations or deploy keys. Active rules block force pushes and deletions on all branches; GitHub Actions defaults to read-only access and cannot approve pull requests.
+
+Submission ID: `c964283e-c732-4821-9841-0e983fbbea88`. App Store Connect visibly confirmed **1.0 (6) Waiting for Review** at 12:15 PM. The earlier build-5 submission was withdrawn to replace its old Help URL. Receipt: `build/AppStore-Build6-Submitted.jpg`. The current `build/BaizeBook.xcarchive` and `build/Distribution/BaizeBook.ipa` contain build 6.
 
 ## Build 5 — available in TestFlight
 
@@ -12,7 +20,7 @@ Settings → Your data now includes **Clear all data**, with a permanent-deletio
 
 Verification: 13 storage/watch-command checks and six phone UI journeys passed across the two changes. These include cancellation, reset persistence after relaunch, new player creation after reset, preference clearing, preserved backup restoration and stale Watch command rejection. Sheet screenshots were inspected on iPhone 17 Pro Max and iPhone SE with very large text; release screenshots are in `Docs/Screenshots/Build5/`. The signed archive and exported IPA passed package checks, with phone and Watch both verified as **1.0 (5)**. Apple accepted the upload on 5 October 2026 at 10:27 BST and completed processing. The **BaizeBook Personal Testing** group shows **1 Tester / 4 Builds**, with **1.0 (5) Testing** and a 90-day expiry. Build ID: `819815d9-4762-438f-8d21-be9cad8f35e6`. Build-specific testing notes were saved and the UI confirmed Saved. The tester row reports **Installed 1.0 (5)** on an iPhone 17 Pro Max / iOS 27.0; the agent did not perform that installation or physical-device testing.
 
-Build dashboard: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/819815d9-4762-438f-8d21-be9cad8f35e6. The current `build/BaizeBook.xcarchive` and `build/Distribution/BaizeBook.ipa` contain build 5.
+Build dashboard: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/819815d9-4762-438f-8d21-be9cad8f35e6. Those archive and IPA paths have since been replaced by build 6.
 
 ## Build 4 — available in TestFlight
 
@@ -24,7 +32,7 @@ Verification: 38 core checks passed (the unchanged private import-fixture check 
 
 ## Build 3 — available in TestFlight
 
-The current source and signed local archive are **1.0 (3)**. This update adds SnookerMate import with profile linking, manual past-game entry, open sessions, a fixed phone scoring screen, simpler fouls, tapping names to switch players, grouped frame stories, explicit frame winners, history corrections, undo/redo, match deletion and simpler wrist controls. Imports are read off the UI thread and merged in one local database transaction. No backend or account requirement was added to the app.
+Build **1.0 (3)** introduced these changes. This update adds SnookerMate import with profile linking, manual past-game entry, open sessions, a fixed phone scoring screen, simpler fouls, tapping names to switch players, grouped frame stories, explicit frame winners, history corrections, undo/redo, match deletion and simpler wrist controls. Imports are read off the UI thread and merged in one local database transaction. No backend or account requirement was added to the app.
 
 Verification: **36 core tests**, including the supplied export's 50 matches / 242 frames / 13,103 shots, **10 storage/watch-command tests**, and **6 phone UI journeys** passed across the verification runs. The supplied JSON is not bundled or committed. Checks cover manual 52–32 scores, the screenshot's 53–30 frame, preserved legacy penalties, backup round trips, duplicate imports, redo branching, historical corrections, local reloads, session closure, explicit winner selection, past-game entry/edit/undo/redo/deletion and grouped ball visits. The iPhone SE scoring screen is usable without scrolling; it was also inspected with very large system text. A paired iOS/watchOS 26.5 simulator also verified a wrist pot changing the persisted phone score from 24 to 25 exactly once. The compact watch layout fits without a scrolling main score page. Phone/watch release packaging checks passed, including matching build numbers, assets, privacy manifests and signatures. New images are in `Docs/Screenshots/Build3/`.
 
@@ -40,7 +48,7 @@ BaizeBook 1.0 (build 2), iOS/iPadOS 17+ and watchOS 10+. Native Liquid Glass on 
 
 Project: `BaizeBook.xcodeproj`. Apple team: `7NW33277C8`. Phone bundle ID: `com.zuhayrk.baizebook`. Watch bundle ID: `com.zuhayrk.baizebook.watchkitapp`.
 
-Build 2 was archived, exported and uploaded with the phone and watch apps. The current archive and exported IPA at those paths now contain build 4. The corrected package includes compiled iPhone/iPad/watch icons and privacy manifests. `scripts/verify-archive.py` checks these artifacts before export/upload.
+Build 2 was archived, exported and uploaded with the phone and watch apps. The archive and exported IPA at those paths now contain build 6. The corrected package includes compiled iPhone/iPad/watch icons and privacy manifests. `scripts/verify-archive.py` checks these artifacts before export/upload.
 
 ## Verification
 
@@ -72,7 +80,7 @@ The internal group **BaizeBook Personal Testing** was created with automatic dis
 
 **Previous build:** BaizeBook **1.0 (2)** passed upload validation and processing on 5 October 2026. The private group shows **1 Tester / 1 Build**, build status **Testing**, and tester status **Invited**. The invitation is addressed to the account holder. Accept it on an iPhone through Apple TestFlight. This dashboard is a management link, not a public installation link. The build expires after 90 days.
 
-Build dashboard: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/d6d6ca15-bf04-430d-b384-f5cdbc8e4817. Build-specific testing notes were saved. This records build 2’s original release; build 4 is now the current update.
+Build dashboard: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/d6d6ca15-bf04-430d-b384-f5cdbc8e4817. Build-specific testing notes were saved. This records build 2’s original release; build 6 is now the current update.
 
 ## Distribution setup
 

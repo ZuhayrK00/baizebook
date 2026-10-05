@@ -1,8 +1,12 @@
 # BaizeBook TestFlight
 
-BaizeBook uses a private internal testing group named **BaizeBook Personal Testing**, with automatic distribution enabled. On 5 October 2026, **1.0 (build 5)** was verified as **Testing**. The group shows **1 Tester / 4 Builds**, and the account-holder tester row reports **Installed 1.0 (5)**. Earlier builds remain available as older versions.
+BaizeBook uses a private internal testing group named **BaizeBook Personal Testing**, with automatic distribution enabled. On 5 October 2026, **1.0 (build 6)** was verified as **Testing**. The group shows **1 Tester / 5 Builds**. The last observed tester installation is **1.0 (5)**; build 6 is available to update. Earlier builds remain available as older versions.
 
-## Build 5 update — available in TestFlight
+## Build 6 update — available in TestFlight
+
+This build updates Settings → Help and support to the renamed repository’s website. Check that Help and privacy load, and that your existing players and match history remain after updating. Scoring, local storage and Watch behavior are unchanged. See `Docs/BUILD6_TESTING.md`.
+
+## Included build 5 changes
 
 Bottom sheets fit their content, with larger accessibility content remaining scrollable. Settings → Your data → **Clear all data** offers a fresh start with a warning and explicit confirmation. Cancel preserves the data; confirming clears players, matches, preferences and the Watch scoreboard. Export a backup before testing a reset, then import it to restore your history. See `Docs/BUILD5_TESTING.md` for the focused checklist.
 
@@ -17,7 +21,7 @@ After potting a single red, **Potted multiple reds?** appears above Foul / End t
 
 If the invitation is missing, open the group in App Store Connect and resend the invitation once a build is marked available for testing. The App Store Connect dashboard is a management link, not a public TestFlight installation link.
 
-Build 5: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/819815d9-4762-438f-8d21-be9cad8f35e6
+Build 6: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/b6ec5c57-3b92-47ec-b163-b9b9e5deeb9d
 
 Dashboard: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight
 

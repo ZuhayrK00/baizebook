@@ -77,9 +77,9 @@ Export a backup to Files or share it with another device. Settings also offers *
 
 ## Release status
 
-**1.0 · build 5** is available to the existing internal TestFlight group and was submitted to App Store review on **5 October 2026**. The latest verified status is **Waiting for Review**; App Store availability is pending approval.
+**1.0 · build 6** is available to the existing internal TestFlight group and was submitted to App Store review on **5 October 2026**. The latest verified status is **Waiting for Review**; App Store availability is pending approval.
 
-Build 5 adds sheets that fit their content and a confirmed local-data reset. The current listing uses fresh iPhone, iPad and Watch screenshots with fictional players. See [release history](Docs/RELEASE.md), [build 5 testing notes](Docs/BUILD5_TESTING.md) and [App Store preparation](Docs/APP_STORE.md) for the recorded checks and submission details.
+Build 6 updates Help for the renamed repository. It includes the refined sheets and confirmed local-data reset from build 5. The current listing uses iPhone, iPad and Watch screenshots with fictional players. See [release history](Docs/RELEASE.md), [build 6 testing notes](Docs/BUILD6_TESTING.md) and [App Store preparation](Docs/APP_STORE.md) for the recorded checks and submission details.
 
 ## Run it locally
 
@@ -163,6 +163,7 @@ Export before removing the app or moving to another device. Apple device backups
 | [Product plan](Docs/PLAN.md) | Scope, scoring decisions and references. |
 | [Release history](Docs/RELEASE.md) | Builds, verification results and distribution status. |
 | [TestFlight](Docs/TESTFLIGHT.md) | Installation and physical iPhone/Watch checks. |
+| [Build 6 checks](Docs/BUILD6_TESTING.md) | Help links and preserving local history after updating. |
 | [Build 5 checks](Docs/BUILD5_TESTING.md) | Sheet sizing, cancellation, reset and backup restoration. |
 | [App Store](Docs/APP_STORE.md) | Listing copy, review notes and screenshot conventions. |
 
