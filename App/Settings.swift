@@ -42,7 +42,7 @@ struct SettingsView: View {
             }
             Section("About") {
                 NavigationLink("How scoring works") { ScoringHelpView() }
-                Link("Help and support", destination: URL(string: "https://zuhayrk00.github.io/baizebook-support/")!)
+                Link("Help and support", destination: URL(string: "https://zuhayrk00.github.io/baizebook/")!)
                 NavigationLink("Privacy") { PrivacyView() }
                 LabeledContent("Version", value: "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "1"))")
                 Text("Made for time at the table.").font(.footnote).foregroundStyle(.secondary)

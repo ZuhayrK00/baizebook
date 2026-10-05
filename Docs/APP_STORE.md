@@ -48,9 +48,9 @@ snooker,scoreboard,scorer,break,frame,match,stats,cue,reds,billiards,watch,offli
 
 Data collection: No data collected by the developer. No tracking. No advertising or analytics SDKs. User-selected backup destinations and Apple's device backups are controlled by the user.
 
-Support URL: https://zuhayrk00.github.io/baizebook-support/
+Support URL: https://zuhayrk00.github.io/baizebook/
 
-Privacy URL: https://zuhayrk00.github.io/baizebook-support/privacy.html
+Privacy URL: https://zuhayrk00.github.io/baizebook/privacy.html
 
 These static pages are published on free GitHub Pages. The public repository contains support pages only.
 

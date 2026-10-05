@@ -2,7 +2,7 @@
 
 ## Current App Store status
 
-Version **1.0 (5)** is **Waiting for Review**, resubmitted on 5 October 2026 at 11:11 AM Europe/London after replacing all listing screenshots with fictional players Alex and Jamie. Automatic release after approval is selected. App Store availability is pending Apple’s approval. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook-support). Full submission details are in `Docs/APP_STORE.md`.
+Version **1.0 (5)** is **Waiting for Review**, resubmitted on 5 October 2026 at 11:11 AM Europe/London after replacing all listing screenshots with fictional players Alex and Jamie. Automatic release after approval is selected. App Store availability is pending Apple’s approval. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Full submission details are in `Docs/APP_STORE.md`.
 
 ## Build 5 — available in TestFlight
 
@@ -58,9 +58,9 @@ Apple distribution validation, upload and processing succeeded. Physical-device 
 
 ## Public support pages
 
-- Support: https://zuhayrk00.github.io/baizebook-support/
-- Privacy: https://zuhayrk00.github.io/baizebook-support/privacy.html
-- App and support repository: https://github.com/ZuhayrK00/baizebook-support
+- Support: https://zuhayrk00.github.io/baizebook/
+- Privacy: https://zuhayrk00.github.io/baizebook/privacy.html
+- App and support repository: https://github.com/ZuhayrK00/baizebook
 
 Both pages returned HTTP 200 after publication. GitHub Pages reported a completed build. Hosting is free; the app has no server dependency. Support requests can use the repository’s Issues. App source and website source now share this repository; the `gh-pages` branch serves the website. Historical screenshots referenced in older release notes are retained in the local development archive. Only current screenshots with fictional players are published.
 

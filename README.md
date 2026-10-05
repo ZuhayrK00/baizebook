@@ -20,7 +20,7 @@
   <a href="#run-it-locally">Get started</a> ·
   <a href="#under-the-baize">Architecture</a> ·
   <a href="#project-notes">Project notes</a> ·
-  <a href="https://zuhayrk00.github.io/baizebook-support/">Support</a>
+  <a href="https://zuhayrk00.github.io/baizebook/">Support</a>
 </p>
 
 ---
@@ -86,8 +86,8 @@ Build 5 adds sheets that fit their content and a confirmed local-data reset. The
 Use a Mac with Xcode and the iOS/watchOS SDKs. The current project was built with **Xcode 27.0**. Deployment targets are **iOS/iPadOS 17** and **watchOS 10**. Native Liquid Glass styling appears on iOS 26 or later; earlier systems use native material controls.
 
 ```bash
-git clone https://github.com/ZuhayrK00/baizebook-support.git
-cd baizebook-support
+git clone https://github.com/ZuhayrK00/baizebook.git
+cd baizebook
 open BaizeBook.xcodeproj
 ```
 
@@ -166,7 +166,7 @@ Export before removing the app or moving to another device. Apple device backups
 | [Build 5 checks](Docs/BUILD5_TESTING.md) | Sheet sizing, cancellation, reset and backup restoration. |
 | [App Store](Docs/APP_STORE.md) | Listing copy, review notes and screenshot conventions. |
 
-**One repository, the whole project.** App source, project documentation and the [support and privacy site](https://zuhayrk00.github.io/baizebook-support/) live together here. Website source is in [`Docs/site/`](Docs/site); the `gh-pages` branch publishes only those static pages on free GitHub Pages. The existing repository address is retained so support links inside the submitted app continue working.
+**One repository, the whole project.** App source, project documentation and the [support and privacy site](https://zuhayrk00.github.io/baizebook/) live together here. Website source is in [`Docs/site/`](Docs/site); the `gh-pages` branch publishes only those static pages on free GitHub Pages. The repository is named `baizebook`. GitHub write access is limited to the owner; active rules prevent force pushes and deletion of project branches.
 
 **Running cost:** no server or per-user service fees. Apple Developer membership is required for distribution, and normal platform maintenance still applies.
 
