@@ -1,8 +1,20 @@
-# Release status — 5 October 2026
+# Release status — 24 October 2026
 
 ## Current App Store status
 
-Version **1.0 (6)** is **Waiting for Review**, resubmitted on 5 October 2026 at 12:15 PM Europe/London with the renamed repository’s support links. The listing screenshots use fictional players Alex and Jamie. Automatic release after approval is selected. App Store availability is pending Apple’s approval. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Full submission details are in `Docs/APP_STORE.md`.
+Version **1.0** is available on the UK App Store. Apple's public lookup, checked on 24 October 2026, reports a release date of **5 October 2026**. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Historical submission details are in `Docs/APP_STORE.md`.
+
+## Build 7 — scoring and session improvements
+
+Version **1.0.1 (7)** fixes main-screen free-ball selection on phone and Watch. Eligible colours become available after a free-ball foul, score the ball-on value and remain re-spotted. The engine preserves explicit free-ball actions for history and backups. Normal scoring resumes after that shot. The existing sheet supports potting both the nominated free ball and ball on.
+
+Each player's score card shows a small bold signed difference underneath the total, hidden when scores are level. The match menu offers **Reset frame**, with confirmation and undo/redo. Reset restores the original reds and break-off player, clears current-frame scores, breaks and timer, and keeps earlier frame results.
+
+**End session** is available in both best-of matches and open sessions. Equal completed frame wins offer **End session as a draw**; unfinished scores stay in history without awarding a frame. Results, History, Watch and head-to-head statistics show draws explicitly, and draws no longer count as opponent wins in head-to-head totals. Undoing session closure preserves the current frame, including an already paused or completed frame.
+
+The macOS engine suite passed **46 checks**, with the private import-fixture test skipped. A clean simulator build and signed Release archive/export succeeded. Phone and Watch package checks verified matching **1.0.1 (7)** versions, icons, privacy manifests, signatures and excluded debug probes. Apple accepted the upload on **24 October 2026 at 18:41 Europe/London** and began processing it for TestFlight. The 1.0.1 App Store draft and release/reviewer notes are saved, but it has not been submitted for review.
+
+Simulator automation is unverified: the test runner stalled during app installation on both iOS 26.5 and iOS 27 before executing test cases. Fresh build artifacts, signing and simulator-service restarts were tried; the Mac was under heavy CPU and memory pressure. A phone-only diagnostic installation subsequently succeeded; screen validation is still pending. No failed app assertion has been observed. Focused physical-device guidance is in `Docs/BUILD7_TESTING.md`.
 
 ## Build 6 — support-link migration
 

@@ -6,6 +6,105 @@ import XCTest
 #endif
 
 final class ScoringTests: XCTestCase {
+    func testMainBallSelectionScoresFreeBallAsRedAndRestoresAfterUndo() throws {
+        for ball in Ball.colours {
+            var f = Frame(reds: 6, starter: 0)
+            try f.record(.foul(points: 4, removedReds: 0, disposition: .opponent, freeBall: true))
+            XCTAssertEqual(f.state.legalBalls, Ball.allCases)
+            try f.record(.pot(ball))
+            XCTAssertEqual(f.shots.last?.action, .freeBall(ball))
+            XCTAssertEqual(f.state.scores, [0,5]); XCTAssertEqual(f.state.breakScore, 1)
+            XCTAssertEqual(f.state.redsRemaining, 6); XCTAssertEqual(f.state.phase, .colour)
+            XCTAssertFalse(f.state.freeBallAvailable)
+            f.undo(); XCTAssertEqual(f.state.legalBalls, Ball.allCases)
+            try f.redo(); try f.record(.pot(.black))
+            XCTAssertEqual(f.state.scores, [0,12]); XCTAssertEqual(f.state.legalBalls, [.red])
+            try f.validate()
+        }
+    }
+    func testMainBallSelectionDuringFreeBallClearance() throws {
+        var f = try clearance(); try f.record(.pot(.yellow))
+        try f.record(.foul(points: 4, removedReds: 0, disposition: .opponent, freeBall: true))
+        XCTAssertEqual(f.state.legalBalls, [.green,.brown,.blue,.pink,.black])
+        XCTAssertThrowsError(try f.record(.pot(.yellow)))
+        XCTAssertThrowsError(try f.record(.pot(.black, count: 2)))
+        try f.record(.pot(.black))
+        XCTAssertEqual(f.state.breakScore, 3); XCTAssertEqual(f.state.legalBalls, [.green])
+        try f.record(.pot(.green)); XCTAssertEqual(f.state.breakScore, 6)
+        try f.validate()
+    }
+    func testTakingBallOnOrEndingTurnDeclinesFreeBall() throws {
+        var f = Frame(reds: 6, starter: 0)
+        try f.record(.foul(points: 4, removedReds: 0, disposition: .opponent, freeBall: true))
+        try f.record(.pot(.red)); XCTAssertEqual(f.state.redsRemaining, 5)
+        XCTAssertFalse(f.state.freeBallAvailable); XCTAssertEqual(f.shots.last?.action, .pot(.red))
+        f.undo(); try f.record(.endTurn)
+        XCTAssertEqual(f.state.legalBalls, [.red]); XCTAssertTrue(f.state.freeBallChoices.isEmpty)
+        try f.validate()
+    }
+    func testResetFramePreservesMatchAndRoundTripsUndoRedo() throws {
+        var m = makeMatch(bestOf: 3)
+        try m.record(.awardFrame(0)); try m.nextFrame()
+        let id = m.frame.id
+        try m.record(.pot(.red)); try m.record(.pot(.black))
+        try m.record(.foul(points: 4, removedReds: 2, disposition: .opponent, freeBall: true))
+        try m.record(.pause(true))
+        let before = m.frame.state
+        let resetDate = Date()
+        try m.record(.resetFrame, date: resetDate)
+        XCTAssertEqual(m.frames.count, 2); XCTAssertEqual(m.wins, [1,0]); XCTAssertEqual(m.frame.id, id)
+        XCTAssertEqual(m.frame.state, FrameState(reds: 15, starter: 1, date: resetDate))
+        XCTAssertEqual(PlayerStats(playerID: m.playerIDs[1], matches: [m]).highestBreak, 0)
+        m.undo(); XCTAssertEqual(m.frame.state, before)
+        try m.redo(); try m.validate()
+        let players = zip(m.playerIDs, m.playerNames).map { Player(id: $0.0, name: $0.1) }
+        XCTAssertEqual(try Backup.decode(Backup(players: players, matches: [m]).encoded()).matches, [m])
+    }
+    func testResetFinishedOpenFrameRemovesOnlyItsWin() throws {
+        var m = makeMatch(bestOf: 0)
+        try m.record(.awardFrame(0)); try m.nextFrame(); try m.record(.awardFrame(1))
+        try m.record(.resetFrame)
+        XCTAssertEqual(m.wins, [1,0]); XCTAssertEqual(m.frame.state.phase, .red)
+        m.undo(); XCTAssertEqual(m.wins, [1,1]); try m.validate()
+    }
+    func testCloseLevelSessionMidFrameInBothFormats() throws {
+        for bestOf in [0,3] {
+            var m = makeMatch(bestOf: bestOf)
+            try m.record(.pot(.red)); try m.record(.pot(.black)); try m.record(.endTurn)
+            try m.record(.pot(.red)); try m.record(.pot(.black)); try m.record(.pause(true))
+            let before = m.frame.state
+            try m.close()
+            XCTAssertTrue(m.isDraw); XCTAssertTrue(m.isComplete); XCTAssertNil(m.winner)
+            XCTAssertEqual(m.frame.state.scores, [8,8]); XCTAssertNil(m.frame.state.winner)
+            let stats = PlayerStats(playerID: m.playerIDs[0], matches: [m])
+            XCTAssertEqual(stats.matchesPlayed, 1); XCTAssertEqual(stats.matchesWon, 0); XCTAssertEqual(stats.framesPlayed, 0)
+            m.undo(); XCTAssertFalse(m.isComplete); XCTAssertEqual(m.frame.state, before)
+            try m.redo(); XCTAssertTrue(m.isDraw)
+            XCTAssertThrowsError(try m.record(.pot(.red)))
+            let players = zip(m.playerIDs, m.playerNames).map { Player(id: $0.0, name: $0.1) }
+            XCTAssertTrue(try Backup.decode(Backup(players: players, matches: [m]).encoded()).matches[0].isDraw)
+        }
+    }
+    func testCloseUsesCompletedFramesForDrawOrWinAndClearsStaleRedo() throws {
+        var m = makeMatch(bestOf: 5)
+        try m.record(.awardFrame(0)); try m.nextFrame(); try m.record(.awardFrame(1)); try m.nextFrame()
+        try m.record(.pot(.red)); try m.close()
+        XCTAssertEqual(m.wins, [1,1]); XCTAssertTrue(m.isDraw); XCTAssertEqual(m.frame.state.scores, [1,0])
+        m.undo(); try m.record(.awardFrame(1)); try m.nextFrame(); try m.close()
+        XCTAssertEqual(m.winner, 1); XCTAssertFalse(m.isDraw); try m.validate()
+        var fresh = makeMatch(bestOf: 0)
+        try fresh.record(.pot(.red)); fresh.undo(); try fresh.close()
+        XCTAssertFalse(fresh.canRedo); XCTAssertTrue(fresh.isDraw)
+        XCTAssertThrowsError(try fresh.close()); try fresh.validate()
+    }
+    func testClosingAfterFinishedFrameUndoesOnlyTheSessionClosure() throws {
+        var m = makeMatch(bestOf: 0)
+        try m.record(.awardFrame(1)); try m.close()
+        m.undo(); XCTAssertFalse(m.isComplete); XCTAssertEqual(m.wins, [0,1])
+        XCTAssertEqual(m.frame.state.phase, .finished)
+        try m.redo(); XCTAssertEqual(m.winner, 1); XCTAssertTrue(m.isComplete)
+        try m.validate()
+    }
     func testMultipleRedsRevisesOneShotAndRoundTripsUndoRedo() throws {
         var f = Frame(reds: 15, starter: 0)
         try f.record(.pot(.red)); let shot = try XCTUnwrap(f.shots.last)

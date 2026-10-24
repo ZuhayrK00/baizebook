@@ -10,6 +10,7 @@ struct MatchView: View {
     @State private var freeBall = false
     @State private var finish = false
     @State private var endSession = false
+    @State private var resetFrame = false
     @State private var showShots = false
     @State private var adjustedPlayer: Int?
     private var match: Match? { store.matches.first { $0.id == matchID } }
@@ -33,6 +34,11 @@ struct MatchView: View {
                                     VStack(spacing: 4) {
                                         HStack(spacing: 5) { Circle().fill(state.activePlayer == p && state.phase != .finished && !match.isComplete ? Theme.green : .clear).frame(width: 5, height: 5); Text(names[p]).font(.system(size: compact ? 14 : 17, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.55) }
                                         Text("\(state.scores[p])").font(.system(size: compact ? 42 : 56, weight: .medium, design: .rounded)).monospacedDigit().lineLimit(1).minimumScaleFactor(0.6).frame(height: compact ? 50 : 67).accessibilityIdentifier("score-\(p)")
+                                        if state.scores[p] != state.scores[1-p] {
+                                            let difference = state.scores[p] - state.scores[1-p]
+                                            Text("(\(difference > 0 ? "+" : "")\(difference))").font(.system(size: compact ? 13 : 15, weight: .bold)).monospacedDigit()
+                                                .accessibilityLabel("\(abs(difference)) \(difference > 0 ? "ahead" : "behind")").accessibilityIdentifier("score-difference-\(p)")
+                                        }
                                         Text("\(match.wins[p]) \(match.wins[p] == 1 ? "frame" : "frames")").font(.system(size: 11)).foregroundStyle(.secondary)
                                     }.frame(maxWidth: .infinity).padding(.vertical, compact ? 8 : 12)
                                     .background(state.activePlayer == p ? Theme.green.opacity(0.09) : Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 22))
@@ -70,8 +76,13 @@ struct MatchView: View {
                         }
                     }
                     .sheet(isPresented: $endSession) {
-                        ConfirmationSheet(title: "End this session?", message: "Completed frames count towards the result. An unfinished frame stays in history without a winner.", icon: "checkmark.circle") {
-                            PrimaryButton(title: "End session and save", icon: "checkmark") { store.closeMatch(matchID); endSession = false }
+                        ConfirmationSheet(title: "End this session?", message: "Completed frames: \(match.wins[0])–\(match.wins[1]). \(match.wins[0] == match.wins[1] ? "The session will be saved as a draw." : "\(names[match.wins[0] > match.wins[1] ? 0 : 1]) wins the session.") An unfinished frame keeps its scores in history without awarding a frame to either player.", icon: "checkmark.circle") {
+                            PrimaryButton(title: match.wins[0] == match.wins[1] ? "End session as a draw" : "End session and save", icon: "checkmark") { store.closeMatch(matchID); endSession = false }.accessibilityIdentifier("confirm-end-session")
+                        }
+                    }
+                    .sheet(isPresented: $resetFrame) {
+                        ConfirmationSheet(title: "Reset this frame?", message: "Start this frame again at 0–0 with \(match.reds) reds and the original player breaking off. Earlier frames are kept. You can undo the reset.", icon: "arrow.counterclockwise") {
+                            PrimaryButton(title: "Reset frame", icon: "arrow.counterclockwise") { score(.resetFrame); resetFrame = false }.accessibilityIdentifier("confirm-reset-frame")
                         }
                     }
             } else { ContentUnavailableView("Match not found", systemImage: "flag.checkered") }
@@ -79,7 +90,10 @@ struct MatchView: View {
             .toolbar { ToolbarItem(placement: .topBarTrailing) { if let match { Menu {
                 Button("Frame timeline", systemImage: "list.bullet.rectangle") { showShots = true }
                 if match.frame.state.phase != .finished && !match.isComplete { Button("Finish frame", systemImage: "flag.checkered") { finish = true } }
-                if match.bestOf == 0 && !match.isComplete { Button("End session", systemImage: "checkmark.circle") { endSession = true } }
+                if !match.isComplete {
+                    Button("Reset frame", systemImage: "arrow.counterclockwise") { resetFrame = true }
+                    Button("End session", systemImage: "checkmark.circle") { endSession = true }
+                }
                 ShareLink(item: "BaizeBook · \(store.names(match).joined(separator: " vs ")) · \(match.wins[0])–\(match.wins[1])") { Label("Share score", systemImage: "square.and.arrow.up") }
             } label: { Image(systemName: "ellipsis") }.accessibilityIdentifier("match-menu") } } }
             .onAppear { store.select(matchID); UIApplication.shared.isIdleTimerDisabled = keepAwake }
@@ -94,7 +108,7 @@ struct MatchView: View {
                 VStack(alignment: .trailing, spacing: 2) { Text("REMAINING").font(.system(size: 10, weight: .bold)).tracking(1.3); Text("\(state.remaining)").font(.system(size: compact ? 23 : 30, weight: .semibold, design: .rounded)) }
             }.foregroundStyle(.white).padding(.horizontal, 4)
             HStack {
-                Text(state.phase == .red ? "Red on" : state.phase == .colour ? "Colour on" : state.phase == .respottedBlack ? "Re-spotted black" : "\(Ball(rawValue: state.nextColour)!.name) on").font(.system(size: 12, weight: .semibold))
+                Text(state.freeBallAvailable ? "Free ball · \(state.ballOn == 1 ? "red" : Ball(rawValue: state.ballOn)!.name.lowercased()) on" : state.phase == .red ? "Red on" : state.phase == .colour ? "Colour on" : state.phase == .respottedBlack ? "Re-spotted black" : "\(Ball(rawValue: state.nextColour)!.name) on").font(.system(size: 12, weight: .semibold))
                 Spacer()
                 if state.freeBallAvailable { Button("Free ball") { freeBall = true }.font(.system(size: 12, weight: .bold)).foregroundStyle(Theme.gold) }
                 else if state.snookersNeeded > 0 { Text("\(state.snookersNeeded) snookers needed").font(.system(size: 11)) }
@@ -122,7 +136,8 @@ struct MatchView: View {
     }
     private func tableBall(_ ball: Ball, state: FrameState, compact: Bool) -> some View {
         let available = state.legalBalls.contains(ball)
-        return Button { score(.pot(ball)) } label: { VStack(spacing: 3) { BallGlyph(ball: ball, value: ball == .red ? state.redsRemaining : ball.rawValue, size: compact ? 40 : 50); Text(ball.name).font(.system(size: 10, weight: .medium)).foregroundStyle(.white) }.frame(maxWidth: .infinity, minHeight: 55).opacity(available ? 1 : 0.3) }.buttonStyle(.plain).disabled(!available || state.resumedAt == nil).accessibilityLabel("Pot \(ball.name.lowercased())\(ball == .red ? ", \(state.redsRemaining) remaining" : "")").accessibilityIdentifier("ball-\(ball.rawValue)")
+        let nominated = state.freeBallChoices.contains(ball)
+        return Button { score(.pot(ball)) } label: { VStack(spacing: 3) { BallGlyph(ball: ball, value: ball == .red ? state.redsRemaining : nominated ? state.ballOn : ball.rawValue, size: compact ? 40 : 50); Text(ball.name).font(.system(size: 10, weight: .medium)).foregroundStyle(.white) }.frame(maxWidth: .infinity, minHeight: 55).opacity(available ? 1 : 0.3) }.buttonStyle(.plain).disabled(!available || state.resumedAt == nil).accessibilityLabel("Pot \(ball.name.lowercased())\(nominated ? " as free ball, \(state.ballOn) points" : ball == .red ? ", \(state.redsRemaining) remaining" : "")").accessibilityIdentifier("ball-\(ball.rawValue)")
     }
     private func traditionalControls(_ match: Match, names: [String]) -> some View {
         VStack(spacing: 12) {
@@ -132,9 +147,9 @@ struct MatchView: View {
     }
     private func result(_ match: Match, names: [String]) -> some View {
         VStack(spacing: 18) {
-            Image(systemName: match.isComplete ? "trophy.fill" : "checkmark.seal.fill").font(.system(size: 34)).foregroundStyle(Theme.gold)
-            Text((match.isComplete ? match.winner : match.frame.state.winner).map { "\(names[$0]) wins \(match.isComplete ? "the match" : "the frame")" } ?? "Session saved").font(.title3.weight(.semibold)).multilineTextAlignment(.center)
-            if !match.isComplete { PrimaryButton(title: "Next frame", icon: "arrow.right") { store.nextFrame(matchID) }; if match.bestOf == 0 { Button("End session") { endSession = true } } }
+            Image(systemName: match.isDraw ? "equal.circle.fill" : match.isComplete ? "trophy.fill" : "checkmark.seal.fill").font(.system(size: 34)).foregroundStyle(Theme.gold)
+            Text((match.isComplete ? match.winner : match.frame.state.winner).map { "\(names[$0]) wins \(match.isComplete ? "the match" : "the frame")" } ?? "Match drawn").font(.title3.weight(.semibold)).multilineTextAlignment(.center)
+            if !match.isComplete { PrimaryButton(title: "Next frame", icon: "arrow.right") { store.nextFrame(matchID) }; Button("End session") { endSession = true } }
             else { Text("Saved to your match history").font(.footnote).foregroundStyle(.secondary) }
         }.frame(maxWidth: .infinity).panel()
     }
@@ -197,7 +212,7 @@ struct FreeBallView: View {
                 Toggle("Also potted the ball on", isOn: $alsoOn)
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Nominated free ball").font(.subheadline.weight(.semibold))
-                    ForEach(Ball.colours.filter { state.phase == .red || $0.rawValue > state.nextColour }) { ball in
+                    ForEach(state.freeBallChoices) { ball in
                         Button { onApply(.freeBall(ball, alsoPotOn: alsoOn)) } label: { HStack { Circle().fill(ball.color).frame(width: 22, height: 22); Text(ball.name); Spacer(); Image(systemName: "plus.circle") }.frame(minHeight: 44) }
                     }
                 }

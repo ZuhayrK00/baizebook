@@ -10,6 +10,22 @@ Price: Free. No in-app purchases.
 
 Copyright: 2026 Zuhayr Khan
 
+## Version 1.0.1 update — 24 October 2026
+
+The 1.0.1 version entry is created in App Store Connect with the existing listing and screenshot assets, automatic release after approval and immediate availability to all users. Apple accepted build 7 at 18:41 Europe/London on 24 October 2026 and began TestFlight processing. App Review submission is pending screen validation; simulator installation stalled before tests could execute. The release has not been submitted.
+
+### What's new
+
+This update improves scoring and session controls:
+
+- Free-ball fouls now enable eligible colours directly on the scoring screen and use the correct ball-on value.
+- Small bold (+/−) differences beneath each score show who is ahead or behind; they disappear when level.
+- Reset the current frame from the match menu, with Undo and Redo.
+- End open sessions or best-of matches as a draw when completed frame wins are level. Unfinished frame scores stay in history.
+- Draws are shown clearly in results, history and head-to-head statistics.
+
+The existing review notes are retained with an additional paragraph explaining these controls. The draft and saved notes were verified in the in-chat browser. Preparation receipt: `build/AppStore-Build7-Prepared.png`.
+
 ## Promotional text
 
 Keep score at the table, track your best breaks and see your progress. A clean snooker companion for iPhone, iPad and Apple Watch. No accounts or subscriptions.

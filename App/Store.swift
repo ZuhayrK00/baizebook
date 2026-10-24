@@ -110,7 +110,7 @@ import UniformTypeIdentifiers
     }
     func undo(_ id: UUID) { perform { guard var match = self.matches.first(where: { $0.id == id }) else { return }; match.undo(); try self.update(match) } }
     func redo(_ id: UUID) { perform { guard var match = self.matches.first(where: { $0.id == id }) else { return }; try match.redo(); try self.update(match) } }
-    func closeMatch(_ id: UUID) { perform { guard var match = self.matches.first(where: { $0.id == id }) else { return }; if match.frame.state.phase != .finished && match.frame.state.resumedAt != nil { try match.record(.pause(true)) }; match.closedAt = Date(); match.revision += 1; try self.update(match) } }
+    func closeMatch(_ id: UUID) { perform { guard var match = self.matches.first(where: { $0.id == id }) else { return }; try match.close(); try match.validate(); try self.update(match) } }
     func editFrame(_ matchID: UUID, frameID: UUID, action: ScoringAction? = nil, undo: Bool = false, redo: Bool = false) throws {
         guard var match = matches.first(where: { $0.id == matchID }), let index = match.frames.firstIndex(where: { $0.id == frameID }) else { throw ScoringError("Frame not found.") }
         if undo { match.frames[index].undo() } else if redo { try match.frames[index].redo() } else if let action { try match.frames[index].record(action) }

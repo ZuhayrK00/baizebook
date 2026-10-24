@@ -52,7 +52,7 @@ All demonstration screenshots use fictional players **Alex and Jamie**.
 | Create player profiles and alternate the break-off. | See the current break, lead or deficit, points remaining and elapsed frame time. | Track highest breaks, wins, frame totals, milestones and head-to-head results. |
 | Record past games with a date, scores, winner and known breaks. | Record fouls, free balls, removed reds and replay decisions. Add multiple reds immediately after potting a red. | Correct saved frames, undo or redo changes, and delete matches. |
 
-The standard scoring screen fits on a phone without scrolling. Pause and resume the frame timer, undo a scoring action, or finish a frame with an explicit winner. Content adapts for larger accessibility text, with scrolling where needed.
+The scoring screen shows a bold lead or deficit beneath each player's total, hidden when level. Select an eligible colour directly after a free-ball foul; it scores the ball-on value. Pause and resume the frame timer, undo a scoring action, reset the current frame, or finish a frame with an explicit winner. End either an open session or a best-of match early; equal completed frame wins produce a draw, while unfinished scores remain in history without awarding a frame.
 
 ### A frame on your wrist
 
@@ -77,7 +77,7 @@ Export a backup to Files or share it with another device. Settings also offers *
 
 ## Release status
 
-**1.0 · build 6** is available to the existing internal TestFlight group and was submitted to App Store review on **5 October 2026**. The latest verified status is **Waiting for Review**; App Store availability is pending approval.
+**1.0** is available on the App Store; Apple's public listing reports its release on **5 October 2026**. **1.0.1 · build 7** was accepted for TestFlight processing on **24 October 2026**, with free-ball selection fixes, bold score differences, frame reset and drawn-session controls. Public App Review submission is pending screen validation. See [build 7 testing notes](Docs/BUILD7_TESTING.md).
 
 Build 6 updates Help for the renamed repository. It includes the refined sheets and confirmed local-data reset from build 5. The current listing uses iPhone, iPad and Watch screenshots with fictional players. See [release history](Docs/RELEASE.md), [build 6 testing notes](Docs/BUILD6_TESTING.md) and [App Store preparation](Docs/APP_STORE.md) for the recorded checks and submission details.
 
@@ -164,6 +164,7 @@ Export before removing the app or moving to another device. Apple device backups
 | [Release history](Docs/RELEASE.md) | Builds, verification results and distribution status. |
 | [TestFlight](Docs/TESTFLIGHT.md) | Installation and physical iPhone/Watch checks. |
 | [Build 6 checks](Docs/BUILD6_TESTING.md) | Help links and preserving local history after updating. |
+| [Build 7 checks](Docs/BUILD7_TESTING.md) | Free balls, score differences, frame resets and draws. |
 | [Build 5 checks](Docs/BUILD5_TESTING.md) | Sheet sizing, cancellation, reset and backup restoration. |
 | [App Store](Docs/APP_STORE.md) | Listing copy, review notes and screenshot conventions. |
 

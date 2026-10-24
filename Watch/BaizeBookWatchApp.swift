@@ -21,12 +21,12 @@ struct WatchScoreView: View {
                         HStack { Text("FRAME \(match.framesCount)"); Spacer(); Text("\(match.wins[0])–\(match.wins[1])") }.font(.system(size: 10, weight: .semibold)).foregroundStyle(.secondary)
                         ForEach(0...1, id: \.self) { p in Button { connection.send(.switchPlayer(p)) } label: { HStack { Text(names[p]).font(.system(size: 15, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.6); Spacer(); Text("\(state.scores[p])").font(.system(size: 29, weight: .semibold, design: .rounded)).monospacedDigit() }.foregroundStyle(state.activePlayer == p ? .mint : .white) }.buttonStyle(.plain).disabled(!connected || state.phase == .finished || match.isComplete) }
                         if state.phase == .finished || match.isComplete {
-                            Text((match.isComplete ? match.winner : state.winner).map { "\(names[$0]) wins" } ?? "Session saved").font(.caption.weight(.semibold)).foregroundStyle(.yellow).lineLimit(1)
+                            Text((match.isComplete ? match.winner : state.winner).map { "\(names[$0]) wins" } ?? "Match drawn").font(.caption.weight(.semibold)).foregroundStyle(.yellow).lineLimit(1)
                             if !match.isComplete { Button("Next frame") { connection.send(nil, nextFrame: true) }.tint(.mint).disabled(!connected) }
                         } else {
                             if !match.traditional { HStack { Text("Break \(state.breakScore)"); Spacer(); Text("Left \(state.remaining)") }.font(.system(size: 11)).foregroundStyle(.secondary) }
                             if match.traditional { HStack { ForEach([1,5,10], id: \.self) { points in Button("+\(points)") { connection.send(.adjustScore(player: state.activePlayer, delta: points)) }.disabled(!canScore) } } }
-                            else { HStack(spacing: 5) { Button { if state.legalBalls.count == 1, let ball = state.legalBalls.first { connection.send(.pot(ball)) } else { colours = true } } label: { Text(state.phase == .red ? "Pot red · \(state.redsRemaining)" : state.legalBalls.count == 1 ? "Pot \(state.legalBalls[0].name.lowercased())" : "Pot colour").font(.system(size: 14, weight: .semibold)) }.tint(state.phase == .red ? .red : .mint).disabled(!canScore)
+                            else { HStack(spacing: 5) { Button { if state.legalBalls.count == 1, let ball = state.legalBalls.first { connection.send(.pot(ball)) } else { colours = true } } label: { Text(state.freeBallAvailable ? "Pot ball · free ball" : state.phase == .red ? "Pot red · \(state.redsRemaining)" : state.legalBalls.count == 1 ? "Pot \(state.legalBalls[0].name.lowercased())" : "Pot colour").font(.system(size: 14, weight: .semibold)) }.tint(state.phase == .red ? .red : .mint).disabled(!canScore)
                                 Button { connection.send(.endTurn) } label: { Image(systemName: "arrow.left.arrow.right").font(.system(size: 14)).frame(minHeight: 34) }.tint(.mint).disabled(!canScore).accessibilityLabel("End turn")
                             } }
                         }
@@ -46,7 +46,7 @@ struct WatchScoreView: View {
                         }
                     }.tag(1)
                 }.tabViewStyle(.page).navigationTitle("BaizeBook")
-                .sheet(isPresented: $colours) { List { ForEach(state.legalBalls) { ball in Button { connection.send(.pot(ball)); colours = false } label: { HStack { Circle().fill(ball.watchColor).frame(width: 22,height: 22); Text(ball.name); Spacer(); Text("\(ball.rawValue)").foregroundStyle(.secondary) } }.disabled(!canScore) } }.navigationTitle("Pot colour") }
+                .sheet(isPresented: $colours) { List { ForEach(state.legalBalls) { ball in Button { connection.send(.pot(ball)); colours = false } label: { HStack { Circle().fill(ball.watchColor).frame(width: 22,height: 22); Text(ball.name); Spacer(); Text("\(state.freeBallChoices.contains(ball) ? state.ballOn : ball.rawValue)").foregroundStyle(.secondary) } }.disabled(!canScore) } }.navigationTitle(state.freeBallAvailable ? "Pot ball" : "Pot colour") }
                 .confirmationDialog("Who won this frame?", isPresented: $finish, titleVisibility: .visible) { ForEach(0...1, id: \.self) { p in Button("\(names[p]) wins") { connection.send(.awardFrame(p)) } } }
             } else { VStack(spacing: 14) { Image(systemName: "circle.grid.2x2.fill").font(.largeTitle).foregroundStyle(.mint); Text("Ready for the baize").font(.headline); Text("Start a match on your iPhone.").font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center).lineLimit(2).fixedSize(horizontal: false, vertical: true); Button("Refresh") { connection.refresh() } } }
         }.onAppear { connection.refresh(); probe() }.onChange(of: connection.reachable) { _, _ in probe() }.onChange(of: connection.snapshot.match?.revision) { _, _ in probe() }.onChange(of: connection.snapshot.match?.id) { _, _ in probe() }
@@ -81,7 +81,7 @@ struct WatchFreeBallView: View {
     var body: some View {
         List { if let state = connection.snapshot.match?.frame.state {
             Toggle("Also potted ball on", isOn: $alsoOn)
-            ForEach(Ball.colours.filter { state.phase == .red || $0.rawValue > state.nextColour }) { ball in Button(ball.name) { connection.send(.freeBall(ball, alsoPotOn: alsoOn)); dismiss() }.disabled(!connection.reachable || connection.sending || state.resumedAt == nil) }
+            ForEach(state.freeBallChoices) { ball in Button(ball.name) { connection.send(.freeBall(ball, alsoPotOn: alsoOn)); dismiss() }.disabled(!connection.reachable || connection.sending || state.resumedAt == nil) }
         } }.navigationTitle("Free ball")
     }
 }

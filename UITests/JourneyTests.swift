@@ -2,6 +2,55 @@ import XCTest
 
 final class JourneyTests: XCTestCase {
     override func setUp() { super.setUp(); continueAfterFailure = false }
+    @MainActor func testFreeBallMainButtonsAndScoreDifferences() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-tests", "--reset-testdata", "--demo"]; app.launch()
+        app.buttons["new-match"].tap(); reveal(app.buttons["start-match"], in: app); app.buttons["start-match"].tap()
+        XCTAssertFalse(app.staticTexts["score-difference-0"].exists)
+        app.buttons["foul"].tap(); app.buttons["Free ball"].tap(); app.buttons["record-foul"].tap()
+        XCTAssertTrue(app.buttons["ball-7"].waitForExistence(timeout: 5)); XCTAssertTrue(app.buttons["ball-7"].isEnabled)
+        XCTAssertTrue(app.buttons["ball-2"].isEnabled)
+        XCTAssertEqual(app.staticTexts["score-difference-0"].label, "4 behind")
+        XCTAssertEqual(app.staticTexts["score-difference-1"].label, "4 ahead")
+        attach(app, "12-free-ball-selection")
+        app.buttons["ball-7"].tap()
+        XCTAssertEqual(app.staticTexts["score-1"].label, "5")
+        app.buttons["ball-7"].tap(); XCTAssertEqual(app.staticTexts["score-1"].label, "12")
+        XCTAssertFalse(app.buttons["ball-7"].isEnabled)
+        app.buttons["undo"].tap(); app.buttons["undo"].tap()
+        XCTAssertEqual(app.staticTexts["score-1"].label, "4"); XCTAssertTrue(app.buttons["ball-7"].isEnabled)
+        app.buttons["redo"].tap(); XCTAssertEqual(app.staticTexts["score-1"].label, "5")
+    }
+    @MainActor func testResetFrameCancellationUndoRedoAndRecovery() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-tests", "--reset-testdata", "--demo"]; app.launch()
+        app.buttons["resume-match"].tap()
+        app.buttons["match-menu"].tap(); app.buttons["Reset frame"].tap()
+        XCTAssertTrue(app.buttons["confirm-reset-frame"].waitForExistence(timeout: 5))
+        app.buttons["Cancel"].tap(); XCTAssertEqual(app.staticTexts["score-0"].label, "24")
+        app.buttons["match-menu"].tap(); app.buttons["Reset frame"].tap(); app.buttons["confirm-reset-frame"].tap()
+        XCTAssertEqual(app.staticTexts["score-0"].label, "0"); XCTAssertEqual(app.staticTexts["score-1"].label, "0")
+        XCTAssertFalse(app.staticTexts["score-difference-0"].exists)
+        app.buttons["undo"].tap(); XCTAssertEqual(app.staticTexts["score-0"].label, "24")
+        app.buttons["redo"].tap(); XCTAssertEqual(app.staticTexts["score-0"].label, "0")
+        app.terminate(); app.launchArguments = ["--ui-tests"]; app.launch(); app.buttons["resume-match"].tap()
+        XCTAssertEqual(app.staticTexts["score-0"].label, "0"); XCTAssertTrue(app.buttons["ball-1"].isEnabled)
+    }
+    @MainActor func testBestOfSessionCanEndAsDrawMidFrame() {
+        let app = XCUIApplication(); app.launchArguments = ["--ui-tests", "--reset-testdata", "--demo"]; app.launch()
+        app.buttons["new-match"].tap(); reveal(app.buttons["start-match"], in: app); app.buttons["start-match"].tap()
+        app.buttons["ball-1"].tap(); app.buttons["end-turn"].tap(); app.buttons["ball-1"].tap()
+        app.buttons["match-menu"].tap(); app.buttons["End session"].tap()
+        XCTAssertTrue(app.buttons["End session as a draw"].waitForExistence(timeout: 5))
+        app.buttons["Cancel"].tap(); XCTAssertTrue(app.buttons["end-turn"].isHittable)
+        app.buttons["match-menu"].tap(); app.buttons["End session"].tap(); app.buttons["confirm-end-session"].tap()
+        XCTAssertTrue(app.staticTexts["Match drawn"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["score-0"].label, "1"); XCTAssertEqual(app.staticTexts["score-1"].label, "1")
+        attach(app, "13-drawn-session")
+        app.buttons["undo"].tap(); XCTAssertTrue(app.buttons["end-turn"].isHittable)
+        app.buttons["redo"].tap(); XCTAssertTrue(app.staticTexts["Match drawn"].exists)
+        app.terminate(); app.launchArguments = ["--ui-tests"]; app.launch()
+        app.buttons["History"].firstMatch.tap(); XCTAssertTrue(app.staticTexts["Alex vs Jamie"].firstMatch.waitForExistence(timeout: 5))
+        app.staticTexts["Alex vs Jamie"].firstMatch.tap(); XCTAssertTrue(app.staticTexts["Draw"].firstMatch.waitForExistence(timeout: 5))
+    }
     @MainActor func testClearAllDataRequiresConfirmationAndStaysEmptyAfterRelaunch() {
         let app = XCUIApplication(); app.launchArguments = ["--ui-tests", "--reset-testdata", "--demo"]; app.launch()
         app.buttons["Settings"].firstMatch.tap()

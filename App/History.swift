@@ -29,7 +29,7 @@ struct MatchHistoryView: View {
                     LabeledContent("Format", value: "\(match.formatLabel) · \(match.reds) reds")
                     LabeledContent("Scoring", value: match.source ?? (match.traditional ? "Traditional" : "Ball by ball"))
                     if let winner = match.winner { LabeledContent("Winner", value: names[winner]) }
-                    else if match.isComplete { LabeledContent("Result", value: "Session saved · level") }
+                    else if match.isDraw { LabeledContent("Result", value: "Draw") }
                     if !match.isComplete { NavigationLink("Resume match") { MatchView(matchID: matchID) } }
                 }
                 Section("Frames") {
@@ -91,10 +91,11 @@ struct FrameTimeline: View {
             visit!.points += points; visit!.lines.append(VisitLine(id: id, ball: ball, points: points, text: text, running: visit!.points))
             if end { flush() }
         }
-        for e in (frame.archive?.events ?? []).prefix(frame.archive?.cursor ?? frame.archive?.events.count ?? 0) {
+        let resetIndex = frame.shots.lastIndex { $0.action == .resetFrame }
+        for e in (resetIndex == nil ? (frame.archive?.events ?? []) : []).prefix(frame.archive?.cursor ?? frame.archive?.events.count ?? 0) {
             add(id: e.id, player: e.player, date: e.date, ball: e.points > 0 ? e.ball : nil, points: e.points, text: e.penalty > 0 ? "Foul · \(e.penalty) to \(names[1-e.player])\(e.disposition == "FREE_BALL" ? " · free ball" : "")" : e.points == 0 ? "Safety / no pot" : e.freeBall ? "Free ball · \(e.points)" : e.redCount > 1 ? "\(e.redCount) reds" : e.ball?.name ?? "Points", end: e.points == 0 || e.penalty > 0)
         }
-        for shot in frame.shots {
+        for shot in frame.shots.suffix(from: resetIndex ?? 0) {
             let p = shot.before.activePlayer
             switch shot.action {
             case .pot(let ball, let count): add(id: shot.id, player: p, date: shot.date, ball: ball, points: ball.rawValue*count, text: count > 1 ? "\(count) reds" : ball.name, end: false)

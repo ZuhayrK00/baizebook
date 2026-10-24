@@ -33,6 +33,7 @@ enum ScoringAction: Codable, Equatable, Sendable {
     case awardFrame(Int)
     case adjustScore(player: Int, delta: Int)
     case pause(Bool)
+    case resetFrame
 }
 
 struct BreakEntry: Codable, Equatable, Sendable {
@@ -62,7 +63,17 @@ struct FrameState: Codable, Equatable, Sendable {
         switch phase { case .red: 1; case .colour: 4; case .clearance: nextColour; case .respottedBlack: 7; case .finished: 0 }
     }
     var legalBalls: [Ball] {
-        switch phase { case .red: [.red]; case .colour: Ball.colours; case .clearance: [Ball(rawValue: nextColour)!]; case .respottedBlack: [.black]; case .finished: [] }
+        let normal: [Ball]
+        switch phase { case .red: normal = [.red]; case .colour: normal = Ball.colours; case .clearance: normal = [Ball(rawValue: nextColour)!]; case .respottedBlack: normal = [.black]; case .finished: normal = [] }
+        return normal + freeBallChoices
+    }
+    var freeBallChoices: [Ball] {
+        guard freeBallAvailable else { return [] }
+        switch phase {
+        case .red: return Ball.colours
+        case .clearance: return Ball.colours.filter { $0.rawValue > nextColour }
+        default: return []
+        }
     }
     var remaining: Int {
         switch phase {
@@ -89,7 +100,11 @@ struct FrameState: Codable, Equatable, Sendable {
         if scores[0] == scores[1] { closeBreak(); phase = .respottedBlack; freeBallAvailable = false }
         else { finish(scores[0] > scores[1] ? 0 : 1, date: date) }
     }
-    mutating func apply(_ action: ScoringAction, date: Date) throws {
+    mutating func apply(_ action: ScoringAction, date: Date, initialReds: Int, starter: Int) throws {
+        if case .resetFrame = action {
+            self = FrameState(reds: initialReds, starter: starter, date: date)
+            return
+        }
         if case .correctFrame(let newScores, let result, let entries, let recordedDate) = action {
             guard newScores.count == 2, newScores.allSatisfy({ (0...10000).contains($0) }), result == nil || (0...1).contains(result!), entries.allSatisfy({ (0...1).contains($0.player) && $0.points > 0 && $0.points <= newScores[$0.player] }), recordedDate.timeIntervalSince1970.isFinite, (0...4_102_444_800).contains(recordedDate.timeIntervalSince1970) else { throw ScoringError("Check the scores, winner, date and breaks.") }
             stopClock(at: date); scores = newScores; breaks = entries; breakScore = 0; winner = result; phase = .finished; endedAt = date; freeBallAvailable = false; self.recordedDate = recordedDate
@@ -99,11 +114,12 @@ struct FrameState: Codable, Equatable, Sendable {
             guard (0...1).contains(player) else { throw ScoringError("Choose a valid player.") }
             finish(player, date: date); return
         }
-        guard phase != .finished else { throw ScoringError("This frame has finished. Undo its last action to change the result.") }
         if case .pause(let paused) = action {
+            guard paused || phase != .finished else { throw ScoringError("This frame has finished.") }
             if paused { stopClock(at: date) } else if resumedAt == nil { resumedAt = date }
             return
         }
+        guard phase != .finished else { throw ScoringError("This frame has finished. Undo its last action to change the result.") }
         if case .switchPlayer(let player) = action {
             guard (0...1).contains(player) else { throw ScoringError("Choose a valid player.") }
             if player != activePlayer { closeBreak(); activePlayer = player; freeBallAvailable = false; if phase == .colour { phase = redsRemaining > 0 ? .red : .clearance } }
@@ -112,6 +128,11 @@ struct FrameState: Codable, Equatable, Sendable {
         guard resumedAt != nil else { throw ScoringError("Resume the frame before scoring.") }
         switch action {
         case .pot(let ball, let count):
+            if freeBallChoices.contains(ball) {
+                guard count == 1 else { throw ScoringError("Record one nominated free ball at a time.") }
+                try apply(.freeBall(ball), date: date, initialReds: initialReds, starter: starter)
+                return
+            }
             guard legalBalls.contains(ball), count >= 1, (ball == .red ? count <= redsRemaining : count == 1) else { throw ScoringError("That ball is not on.") }
             freeBallAvailable = false
             scores[activePlayer] += ball.rawValue * count; breakScore += ball.rawValue * count
@@ -155,7 +176,7 @@ struct FrameState: Codable, Equatable, Sendable {
         case .adjustScore(let player, let delta):
             guard (0...1).contains(player), (-200...200).contains(delta), scores[player] + delta >= 0, scores[player] + delta <= 10000 else { throw ScoringError("The score must stay between 0 and 10,000.") }
             closeBreak(); scores[player] += delta
-        case .pause, .switchPlayer, .correctFrame: break
+        case .pause, .switchPlayer, .correctFrame, .resetFrame: break
         }
     }
 }
@@ -183,6 +204,7 @@ struct Shot: Codable, Identifiable, Equatable, Sendable {
         case .awardFrame: "Frame awarded"
         case .adjustScore(_, let delta): "Score adjusted \(delta >= 0 ? "+" : "")\(delta)"
         case .pause(let paused): paused ? "Timer paused" : "Timer resumed"
+        case .resetFrame: "Frame reset"
         }
     }
 }
@@ -212,7 +234,7 @@ struct Frame: Codable, Identifiable, Equatable, Sendable {
         }
         var revised = shot.before
         shot.action = .pot(.red, count: total)
-        try revised.apply(shot.action, date: shot.date)
+        try revised.apply(shot.action, date: shot.date, initialReds: initialReds, starter: starter)
         shots[shots.count-1] = shot; state = revised; undoneShots = nil
     }
     init(reds: Int, starter: Int, date: Date = Date()) {
@@ -220,9 +242,11 @@ struct Frame: Codable, Identifiable, Equatable, Sendable {
         self.state = FrameState(reds: reds, starter: starter, date: date)
     }
     mutating func record(_ action: ScoringAction, date: Date = Date()) throws {
+        // Store the explicit free-ball action so history and backups retain its value.
+        let action: ScoringAction = if case .pot(let ball, count: 1) = action, state.freeBallChoices.contains(ball) { .freeBall(ball) } else { action }
         let before = state
         var next = state
-        try next.apply(action, date: date)
+        try next.apply(action, date: date, initialReds: initialReds, starter: starter)
         if var saved = archive, let cursor = saved.cursor, cursor < saved.events.count { saved.events = Array(saved.events.prefix(cursor)); saved.cursor = nil; archive = saved }
         undoneShots = nil
         state = next
@@ -234,7 +258,7 @@ struct Frame: Codable, Identifiable, Equatable, Sendable {
     }
     mutating func redo() throws {
         if var saved = archive, (saved.cursor ?? saved.events.count) < saved.events.count { saved.cursor = (saved.cursor ?? saved.events.count)+1; archive = saved; state = saved.baseState(reds: initialReds, starter: starter, date: startedAt) }
-        else if var pending = undoneShots, let shot = pending.popLast() { guard shot.before == state else { throw ScoringError("This redo is no longer available.") }; try state.apply(shot.action, date: shot.date); shots.append(shot); undoneShots = pending }
+        else if var pending = undoneShots, let shot = pending.popLast() { guard shot.before == state else { throw ScoringError("This redo is no longer available.") }; try state.apply(shot.action, date: shot.date, initialReds: initialReds, starter: starter); shots.append(shot); undoneShots = pending }
     }
     func validate() throws {
         guard (1...15).contains(initialReds), (0...1).contains(starter), shots.count <= 10000, startedAt.timeIntervalSince1970.isFinite, (0...4_102_444_800).contains(startedAt.timeIntervalSince1970), Set(shots.map(\.id)).count == shots.count else { throw ScoringError("Invalid frame in the backup.") }
@@ -245,7 +269,7 @@ struct Frame: Codable, Identifiable, Equatable, Sendable {
         var date = max(startedAt, archive?.events.prefix(archive?.cursor ?? archive?.events.count ?? 0).last?.date ?? startedAt)
         for shot in shots {
             guard shot.date >= date, shot.date.timeIntervalSince1970 <= 4_102_444_800, shot.before == replay else { throw ScoringError("The backup's scoring history is inconsistent.") }
-            try replay.apply(shot.action, date: shot.date); date = shot.date
+            try replay.apply(shot.action, date: shot.date, initialReds: initialReds, starter: starter); date = shot.date
         }
         guard replay.scores.allSatisfy({ (0...10000).contains($0) }), replay == state else { throw ScoringError("The backup's frame score does not match its history.") }
         var future = replay
@@ -253,7 +277,7 @@ struct Frame: Codable, Identifiable, Equatable, Sendable {
         if let archive, (archive.cursor ?? archive.events.count) < archive.events.count { future = archive.fullState(reds: initialReds, starter: starter, date: startedAt); futureDate = max(futureDate, archive.events.last?.date ?? startedAt) }
         for shot in (undoneShots ?? []).reversed() {
             guard shot.before == future, shot.date >= futureDate else { throw ScoringError("The backup's redo history is inconsistent.") }
-            try future.apply(shot.action, date: shot.date); futureDate = shot.date
+            try future.apply(shot.action, date: shot.date, initialReds: initialReds, starter: starter); futureDate = shot.date
         }
     }
 }
@@ -279,7 +303,7 @@ struct Match: Codable, Identifiable, Equatable, Sendable {
     var redoDeclaredWinner: Int?
     var historyEdited: Bool?
     var formatLabel: String { bestOf == 0 ? "Open session" : "Best of \(bestOf)" }
-    var canUndo: Bool { frame.canUndo || (frames.count > 1 && frame.archive == nil) }
+    var canUndo: Bool { closedAt != nil || frame.canUndo || (frames.count > 1 && frame.archive == nil) }
     var canRedo: Bool { frame.canRedo || redoNewFrame != nil || redoClosedAt != nil }
     init(players: [Player], bestOf: Int, reds: Int, firstPlayer: Int, traditional: Bool, date: Date = Date()) {
         playerIDs = players.map(\.id); playerNames = players.map(\.name)
@@ -293,6 +317,14 @@ struct Match: Codable, Identifiable, Equatable, Sendable {
         return bestOf == 0 ? nil : wins.firstIndex { $0 >= bestOf/2 + 1 }
     }
     var isComplete: Bool { closedAt != nil || winner != nil }
+    var isDraw: Bool { isComplete && winner == nil }
+    mutating func close(date: Date = Date()) throws {
+        guard !isComplete else { throw ScoringError("This session has already ended.") }
+        // A closure action lets Undo reopen the session without changing the frame result.
+        try record(.pause(true), date: date)
+        closedAt = date; declaredWinner = nil
+        redoNewFrame = nil; redoClosedAt = nil; redoDeclaredWinner = nil; revision += 1
+    }
     mutating func record(_ action: ScoringAction, date: Date = Date()) throws {
         guard !isComplete else { throw ScoringError("This session has ended. Edit its frames in History.") }
         try frames[frames.count-1].record(action, date: date); redoNewFrame = nil; redoClosedAt = nil; redoDeclaredWinner = nil; revision += 1

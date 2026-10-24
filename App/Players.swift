@@ -103,7 +103,8 @@ struct PlayerDetail: View {
                             ForEach(store.players.filter { opponent in opponent.id != playerID && matches.contains(where: { $0.playerIDs.contains(opponent.id) }) }) { opponent in
                                 let meetings = matches.filter { $0.isComplete && $0.playerIDs.contains(opponent.id) }
                                 let wins = meetings.filter { $0.winner == $0.playerIDs.firstIndex(of: playerID) }.count
-                                HStack { Text(opponent.name).font(.headline); Spacer(); Text("\(wins)–\(meetings.count-wins)").font(.system(.title3, design: .rounded, weight: .semibold)) }
+                                let draws = meetings.filter(\.isDraw).count
+                                HStack { Text(opponent.name).font(.headline); Spacer(); VStack(alignment: .trailing, spacing: 3) { Text("\(wins)–\(meetings.count-wins-draws)").font(.system(.title3, design: .rounded, weight: .semibold)); if draws > 0 { Text("\(draws) \(draws == 1 ? "draw" : "draws")").font(.caption).foregroundStyle(.secondary) } } }
                             }
                         }.panel()
                         SectionTitle(title: "Match history")

@@ -177,6 +177,7 @@ struct MatchRow: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(store.names(match).joined(separator: " vs ")).font(.headline)
                 Text("\(match.createdAt.formatted(date: .abbreviated, time: .omitted)) · \(match.reds) reds").font(.caption).foregroundStyle(.secondary)
+                if match.isDraw { Text("Draw").font(.caption.weight(.semibold)).foregroundStyle(Theme.green) }
             }
             Spacer()
             Text("\(match.wins[0])–\(match.wins[1])").font(.system(.title2, design: .rounded, weight: .semibold)).monospacedDigit()

@@ -4,6 +4,34 @@ import SwiftData
 @testable import BaizeBook
 
 @MainActor final class StorageTests: XCTestCase {
+    func testFreeBallResetAndDrawPersistAndRejectStaleWatchCommands() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("BaizeBookUpdate-\(UUID())", isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let config = ModelConfiguration("UpdateTests", url: directory.appendingPathComponent("Tests.store"), cloudKitDatabase: .none)
+        let suite = "BaizeBookUpdateTests.\(UUID())"
+        let defaults = UserDefaults(suiteName: suite)!
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let store = try AppStore(configuration: config, defaults: defaults, connectWatch: false)
+        try store.addPlayer("A"); try store.addPlayer("B")
+        let id = try store.start(players: store.players, bestOf: 3, reds: 6, starter: 0, traditional: false)
+        store.act(.foul(points: 4, removedReds: 0, disposition: .opponent, freeBall: true), matchID: id)
+        let freeBall = try XCTUnwrap(store.activeMatch)
+        let command = WatchCommand(matchID: id, frameID: freeBall.frame.id, revision: freeBall.revision, action: .pot(.black))
+        XCTAssertNil(store.watch.onCommand?(command)); XCTAssertEqual(store.activeMatch?.frame.state.scores, [0,5])
+        store.act(.resetFrame, matchID: id)
+        XCTAssertEqual(store.activeMatch?.frame.state.scores, [0,0]); XCTAssertEqual(store.activeMatch?.frame.state.redsRemaining, 6)
+        let stale = WatchCommand(matchID: id, frameID: freeBall.frame.id, revision: freeBall.revision, action: .pot(.red))
+        XCTAssertNotNil(store.watch.onCommand?(stale))
+        store.closeMatch(id)
+        let reopened = try AppStore(configuration: config, defaults: defaults, connectWatch: false)
+        XCTAssertTrue(try XCTUnwrap(reopened.activeMatch).isDraw)
+        XCTAssertEqual(reopened.activeMatch?.frame.state.scores, [0,0])
+        reopened.undo(id); XCTAssertFalse(try XCTUnwrap(reopened.activeMatch).isComplete)
+        reopened.undo(id); XCTAssertEqual(reopened.activeMatch?.frame.state.scores, [0,5])
+        reopened.redo(id); reopened.redo(id); XCTAssertTrue(try XCTUnwrap(reopened.activeMatch).isDraw)
+        _ = try Backup.decode(reopened.backup().encoded())
+    }
     func testClearAllDataPersistsResetsPreferencesAndAllowsBackupRestore() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent("BaizeBookReset-\(UUID())", isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
