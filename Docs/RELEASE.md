@@ -2,7 +2,9 @@
 
 ## Current App Store status
 
-Version **1.0** is available on the UK App Store. Apple's public lookup, checked on 24 October 2026, reports a release date of **5 October 2026**. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Historical submission details are in `Docs/APP_STORE.md`.
+Version **1.0.1 (7)** is **Waiting for Review**, submitted on **24 October 2026 at 18:59 Europe/London** after the account holder confirmed the four requested iPhone changes work as expected. Automatic release after approval is selected, with immediate availability to all users. Submission ID: `55d9b36f-dcee-4035-ac59-9ecdadbd642d`. App Store Connect confirmed **1 Item Submitted** and **1.0.1 Waiting for Review**. Receipt: `build/AppStore-Build7-Submitted.png`.
+
+Version **1.0** remains the current public App Store release while Apple reviews this update. Apple's public lookup, checked on 24 October 2026 before submission, reports its release date as **5 October 2026**. App source and the support site share the public [BaizeBook repository](https://github.com/ZuhayrK00/baizebook). Historical submission details are in `Docs/APP_STORE.md`.
 
 ## Build 7 — scoring and session improvements
 
@@ -14,7 +16,9 @@ Each player's score card shows a small bold signed difference underneath the tot
 
 The macOS engine suite passed **46 checks**, with the private import-fixture test skipped. A clean simulator build and signed Release archive/export succeeded. Phone and Watch package checks verified matching **1.0.1 (7)** versions, icons, privacy manifests, signatures and excluded debug probes. Apple accepted the upload on **24 October 2026 at 18:41 Europe/London** and completed processing. The existing **BaizeBook Personal Testing** group shows **1 Tester / 6 Builds**, with **1.0.1 (7) Testing** and a 90-day expiry. Build-specific testing notes were saved and the UI confirmed **Saved**. Build ID: `df311740-444c-4752-910b-8b866a4446d0`. Receipt: `build/TestFlight-Build7-Available.png`. The tester's last observed installation remains **1.0 (6)**. Physical installation/testing of build 7 has not been performed by the agent.
 
-The 1.0.1 App Store draft and release/reviewer notes are saved, but it has not been submitted for review. Public submission awaits a physical screen check. The signed archive and exported IPA at `build/BaizeBook.xcarchive` and `build/Distribution/BaizeBook.ipa` now contain **1.0.1 (7)**.
+On 24 October 2026, the account holder confirmed on their iPhone that all four requested changes work as expected: free-ball selection, bold score differences, Reset frame and End session as a draw. This is user-reported physical validation; no additional Watch, backup or simulator testing is implied.
+
+The 1.0.1 App Store version and release/reviewer notes are saved, build **7** is selected, and the update was submitted successfully after the physical screen check. Its verified status is **Waiting for Review**. Automatic release after approval and immediate availability are selected. The signed archive and exported IPA at `build/BaizeBook.xcarchive` and `build/Distribution/BaizeBook.ipa` contain **1.0.1 (7)**.
 
 Simulator automation is unverified: the test runner stalled during app installation on both iOS 26.5 and iOS 27 before executing test cases. Fresh build artifacts, signing and simulator-service restarts were tried; the Mac was under heavy CPU and memory pressure. A phone-only diagnostic installation subsequently succeeded, but app launch also stalled. These attempts were stopped and the simulators shut down. No failed app assertion has been observed. Focused physical-device guidance is in `Docs/BUILD7_TESTING.md`.
 

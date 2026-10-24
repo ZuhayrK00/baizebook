@@ -1,12 +1,12 @@
 # BaizeBook TestFlight
 
-BaizeBook uses a private internal testing group named **BaizeBook Personal Testing**, with automatic distribution enabled. On 24 October 2026, **1.0.1 (build 7)** was verified as **Testing**. The group shows **1 Tester / 6 Builds**. The last observed tester installation is **1.0 (6)**; build 7 is available to update. Earlier builds remain available as older versions.
+BaizeBook uses a private internal testing group named **BaizeBook Personal Testing**, with automatic distribution enabled. On 24 October 2026, **1.0.1 (build 7)** was verified as **Testing**. The group shows **1 Tester / 6 Builds**. The account holder subsequently confirmed the four requested changes work as expected on their iPhone. Earlier builds remain available as older versions.
 
 ## Build 7 update — available in TestFlight
 
 Free-ball fouls now enable eligible colours on the main phone and Watch controls and score them at the ball-on value. Each phone score shows a small bold signed difference, hidden when level. The match menu offers an undoable **Reset frame** and **End session** in both open and best-of matches. Equal completed frame wins offer **End session as a draw**; unfinished scores remain in history without awarding a frame. Results and head-to-head statistics display draws explicitly.
 
-The scoring engine's 46 public checks and signed phone/Watch package verification passed. Simulator installation/launch stalled before screen tests executed, so the App Store version remains a prepared draft until physical screen checks are complete. Build-specific testing notes are saved in TestFlight; use `Docs/BUILD7_TESTING.md` for the detailed checklist. Update without deleting the app to preserve local records.
+The scoring engine's 46 public checks and signed phone/Watch package verification passed. Simulator installation/launch stalled before screen tests executed. On 24 October 2026, the account holder confirmed that all four requested changes work as expected on their iPhone, completing the physical screen check. Version **1.0.1 (7)** was then submitted for App Store review at **18:59 Europe/London**; its verified status is **Waiting for Review**. Build-specific testing notes are saved in TestFlight; use `Docs/BUILD7_TESTING.md` for the detailed checklist. Update without deleting the app to preserve local records.
 
 Build 7: https://appstoreconnect.apple.com/teams/eabaf5a9-8c35-49d2-b366-e1752af655ca/apps/6819089436/testflight/ios/df311740-444c-4752-910b-8b866a4446d0
 

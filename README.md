@@ -77,7 +77,7 @@ Export a backup to Files or share it with another device. Settings also offers *
 
 ## Release status
 
-**1.0** is available on the App Store; Apple's public listing reports its release on **5 October 2026**. **1.0.1 · build 7** is available in the existing internal TestFlight group as of **24 October 2026**, with free-ball selection fixes, bold score differences, frame reset and drawn-session controls. Public App Review submission is pending physical screen validation. See [build 7 testing notes](Docs/BUILD7_TESTING.md).
+**1.0** is available on the App Store; Apple's public listing reports its release on **5 October 2026**. **1.0.1 · build 7** is **Waiting for Review**, submitted on **24 October 2026** after the account holder confirmed the four iPhone changes work as expected. It adds free-ball selection fixes, bold score differences, frame reset and drawn-session controls. Automatic release after approval is selected, and build 7 remains available in the existing internal TestFlight group. See [build 7 testing notes](Docs/BUILD7_TESTING.md).
 
 Build 6 updates Help for the renamed repository. It includes the refined sheets and confirmed local-data reset from build 5. The current listing uses iPhone, iPad and Watch screenshots with fictional players. See [release history](Docs/RELEASE.md), [build 6 testing notes](Docs/BUILD6_TESTING.md) and [App Store preparation](Docs/APP_STORE.md) for the recorded checks and submission details.
 

@@ -12,7 +12,9 @@ Copyright: 2026 Zuhayr Khan
 
 ## Version 1.0.1 update — 24 October 2026
 
-The 1.0.1 version entry is created in App Store Connect with the existing listing and screenshot assets, automatic release after approval and immediate availability to all users. Apple accepted build 7 at 18:41 Europe/London on 24 October 2026 and completed processing. **1.0.1 (7)** is **Testing** in the existing internal group. App Review submission is pending physical screen validation; simulator installation/launch stalled before tests could execute. The release has not been submitted.
+Version **1.0.1 (7)** was submitted successfully at **18:59 Europe/London on 24 October 2026**. Verified status: **Waiting for Review**. The account holder confirmed all four requested iPhone changes work as expected before submission. Simulator installation/launch remained unverified. The existing listing and screenshot assets are retained. Automatic release after approval and immediate availability to all users are selected. Build 7 also remains **Testing** in the existing internal TestFlight group.
+
+Submission ID: `55d9b36f-dcee-4035-ac59-9ecdadbd642d`. Review page: https://appstoreconnect.apple.com/apps/6819089436/distribution/reviewsubmissions/details/55d9b36f-dcee-4035-ac59-9ecdadbd642d. Apple confirmed **1 Item Submitted** and the sidebar showed **1.0.1 Waiting for Review**. Receipt: `build/AppStore-Build7-Submitted.png`.
 
 ### What's new
 
