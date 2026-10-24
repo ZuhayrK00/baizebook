@@ -12,7 +12,7 @@ Copyright: 2026 Zuhayr Khan
 
 ## Version 1.0.1 update — 24 October 2026
 
-The 1.0.1 version entry is created in App Store Connect with the existing listing and screenshot assets, automatic release after approval and immediate availability to all users. Apple accepted build 7 at 18:41 Europe/London on 24 October 2026 and began TestFlight processing. App Review submission is pending screen validation; simulator installation stalled before tests could execute. The release has not been submitted.
+The 1.0.1 version entry is created in App Store Connect with the existing listing and screenshot assets, automatic release after approval and immediate availability to all users. Apple accepted build 7 at 18:41 Europe/London on 24 October 2026 and completed processing. **1.0.1 (7)** is **Testing** in the existing internal group. App Review submission is pending physical screen validation; simulator installation/launch stalled before tests could execute. The release has not been submitted.
 
 ### What's new
 
